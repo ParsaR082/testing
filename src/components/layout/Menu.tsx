@@ -107,7 +107,7 @@ export function Menu({ open, onClose }: MenuProps) {
               <li
                 key={link.href}
                 className={[
-                  "overflow-hidden transition-transform duration-700",
+                  "menu-item-mask transition-transform duration-700",
                   open
                     ? "translate-y-0"
                     : "translate-y-full",
