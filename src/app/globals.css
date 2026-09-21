@@ -246,6 +246,15 @@ img {
 }
 
 /* ─────────────────────────────────────────
+   Hero text mask
+   Same glyph-safe principle as TextReveal for the custom hero animation.
+───────────────────────────────────────── */
+
+.hero-text-mask {
+  clip-path: inset(-0.35em 0 -0.35em 0);
+}
+
+/* ─────────────────────────────────────────
    Interaction
 ───────────────────────────────────────── */
 
