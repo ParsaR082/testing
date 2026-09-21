@@ -246,6 +246,17 @@ img {
 }
 
 /* ─────────────────────────────────────────
+   Menu text mask
+   The menu itself animates its list items vertically. A negative
+   vertical clip inset prevents Persian dots and descenders from being
+   cut by the reveal mask.
+───────────────────────────────────────── */
+
+.menu-item-mask {
+  clip-path: inset(-0.35em 0 -0.35em 0);
+}
+
+/* ─────────────────────────────────────────
    Hero text mask
    Same glyph-safe principle as TextReveal for the custom hero animation.
 ───────────────────────────────────────── */
