@@ -236,7 +236,7 @@ export function Hero() {
             ref={contentRef}
             className="max-w-[1250px]"
           >
-            <div className="overflow-hidden">
+            <div className="hero-text-mask">
               <p
                 dir="ltr"
                 className="type-label text-[8px] font-medium uppercase leading-none tracking-[0.2em] text-white/55 md:text-[10px] md:tracking-[0.22em]"
@@ -245,7 +245,7 @@ export function Hero() {
               </p>
             </div>
 
-            <div className="mt-5 overflow-hidden md:mt-7">
+            <div className="hero-text-mask mt-5 md:mt-7">
               <h1
                 dir="rtl"
                 className="type-display max-w-[1150px] text-[clamp(3.25rem,11vw,10rem)] font-light leading-[0.9] tracking-[-0.055em] md:leading-[0.86] md:tracking-[-0.065em]"
