@@ -65,7 +65,7 @@ export default async function ProjectPage({
                 </p>
               </TextReveal>
 
-              <div className="mt-7 overflow-hidden md:mt-9">
+              <div className="mt-7 md:mt-9">
                 <h1 className="max-w-[1100px] text-[clamp(4rem,9vw,10rem)] font-light leading-[0.86] tracking-[-0.065em]">
                   {project.name}
                 </h1>
