@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function StudioPage() {
   return (
-    <main className="studio-section overflow-hidden bg-background text-foreground">
+    <main className="studio-section bg-background text-foreground">
       {/* =========================================================
           HERO
       ========================================================= */}
