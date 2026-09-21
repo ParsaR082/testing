@@ -18,22 +18,6 @@ type TextRevealProps = {
  * Persian display glyphs (ی, ر, ق, dots) routinely paint outside a tight
  * line-box; the mask must include that ink without loosening leading.
  */
-const GLYPH_OVERFLOW_EM = 0.28;
-
-function getMaxFontSize(element: HTMLElement) {
-  let maxSize = parseFloat(getComputedStyle(element).fontSize);
-
-  for (const node of element.querySelectorAll<HTMLElement>("*")) {
-    const size = parseFloat(getComputedStyle(node).fontSize);
-
-    if (size > maxSize) {
-      maxSize = size;
-    }
-  }
-
-  return Number.isFinite(maxSize) ? maxSize : 16;
-}
-
 export function TextReveal({
   children,
   className = "",
@@ -47,20 +31,6 @@ export function TextReveal({
     const element = textRef.current;
 
     if (!root || !element) return;
-
-    const syncGlyphOverflow = () => {
-      const fontSize = getMaxFontSize(element);
-
-      root.style.setProperty(
-        "--text-reveal-overflow",
-        `${fontSize * GLYPH_OVERFLOW_EM}px`,
-      );
-    };
-
-    syncGlyphOverflow();
-
-    const observer = new ResizeObserver(syncGlyphOverflow);
-    observer.observe(element);
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -85,7 +55,6 @@ export function TextReveal({
     }, element);
 
     return () => {
-      observer.disconnect();
       ctx.revert();
     };
   }, [delay]);
