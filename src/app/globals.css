@@ -222,28 +222,26 @@ img {
 
 /* ─────────────────────────────────────────
    Text reveal mask
-   Extra padding is sized from the revealed
-   text's font-size so Persian glyph ink
-   (descenders, dots) is not clipped.
-   Negative margin restores the original
-   layout metrics.
+   Use a vertical clip-path with a small negative inset instead of
+   overflow:hidden. This preserves the reveal mask while allowing
+   Persian glyph ink (dots, descenders and joining forms) to paint
+   slightly outside a tight line box.
 ───────────────────────────────────────── */
 
 .text-reveal {
-  --text-reveal-overflow: 0px;
-  margin-block: calc(var(--text-reveal-overflow) * -1);
+  margin-block: 0;
 }
 
 .text-reveal__mask {
-  overflow: hidden;
-  padding-block: var(--text-reveal-overflow);
+  clip-path: inset(-0.35em 0 -0.35em 0);
 }
 
 .text-reveal__mask h1,
 .text-reveal__mask h2,
 .text-reveal__mask h3,
 .text-reveal__mask h4,
-.text-reveal__mask p {
+.text-reveal__mask p,
+.text-reveal__mask span {
   overflow: visible;
 }
 
@@ -277,18 +275,6 @@ img {
    Layout helpers
 ───────────────────────────────────────── */
 
-.studio-section,
-.horizontal-gallery {
-  overflow: clip;
-}
-
-.home-intro,
-.home-projects,
-.home-statement,
-.home-projects article,
-.home-projects a {
-  overflow: clip;
-}
 
 /* ─────────────────────────────────────────
    Homepage
@@ -303,17 +289,6 @@ img {
     text-wrap: balance;
   }
 
-  .home-intro,
-  .home-projects,
-  .home-statement,
-  .studio-section,
-  .horizontal-gallery {
-    overflow: clip;
-  }
-
-  .home-projects article {
-    overflow: visible;
-  }
 
   .horizontal-gallery img,
   .studio-section img {
