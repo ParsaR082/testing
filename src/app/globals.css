@@ -511,3 +511,67 @@ img {
 .performance-contain {
   contain: layout paint;
 }
+
+
+/* Cinematic horizontal gallery edge treatment */
+.gallery-edge-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 25;
+  width: clamp(90px, 13vw, 220px);
+  pointer-events: none;
+}
+
+.gallery-edge-fade--left {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 13, 13, 0.98) 0%,
+    rgba(13, 13, 13, 0.82) 24%,
+    rgba(13, 13, 13, 0.38) 58%,
+    rgba(13, 13, 13, 0) 100%
+  );
+}
+
+.gallery-edge-fade--right {
+  right: 0;
+  background: linear-gradient(
+    270deg,
+    rgba(13, 13, 13, 0.98) 0%,
+    rgba(13, 13, 13, 0.82) 24%,
+    rgba(13, 13, 13, 0.38) 58%,
+    rgba(13, 13, 13, 0) 100%
+  );
+}
+
+.gallery-edge-line {
+  position: absolute;
+  top: 18%;
+  bottom: 18%;
+  z-index: 26;
+  width: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.12) 25%,
+    rgba(255,255,255,0.12) 75%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+.gallery-edge-line--left {
+  left: clamp(22px, 4vw, 64px);
+}
+
+.gallery-edge-line--right {
+  right: clamp(22px, 4vw, 64px);
+}
+
+@media (max-width: 767px) {
+  .gallery-edge-fade,
+  .gallery-edge-line {
+    display: none;
+  }
+}
