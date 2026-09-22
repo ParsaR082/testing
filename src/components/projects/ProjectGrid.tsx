@@ -6,7 +6,7 @@ export function ProjectGrid() {
   return (
     <div
       dir="rtl"
-      className="grid grid-cols-1 gap-x-8 gap-y-20 md:grid-cols-12 md:gap-y-36"
+      className="grid grid-cols-1 gap-x-8 gap-y-24 md:grid-cols-12 md:gap-y-44"
     >
       <ProjectCard
         project={projects[0]}
