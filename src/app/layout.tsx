@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 
 import "./globals.css";
 
-import { ContactCTA } from "@/components/home/ContactCTA";
+import { ContactFooter } from "@/components/footer/ContactFooter";
 import { Cursor } from "@/components/cursor/Cursor";
 import { OpeningSequence } from "@/components/intro/OpeningSequence";
 import { Navbar } from "@/components/layout/Navbar";
@@ -131,7 +132,7 @@ export default function RootLayout({
 
           {children}
 
-          <ContactCTA />
+          <ContactFooter />
         </SmoothScroll>
       </body>
     </html>

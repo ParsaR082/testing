@@ -62,10 +62,11 @@ export function Hero() {
       ).matches;
 
       const context = gsap.context(() => {
+        const introFrame = window.requestAnimationFrame(() => {
         gsap.fromTo(
           image,
           {
-            scale: isMobile ? 1.035 : 1.08,
+            scale: isMobile ? 1.05 : 1.12,
 
             x: 0,
 
@@ -74,9 +75,9 @@ export function Hero() {
           {
             scale: 1,
 
-            duration: isMobile ? 2.2 : 2.8,
+            duration: isMobile ? 2.8 : 3.6,
 
-            ease: "power3.out",
+            ease: "power4.out",
           },
         );
 
@@ -92,11 +93,11 @@ export function Hero() {
 
             opacity: 1,
 
-            duration: isMobile ? 1 : 1.25,
+            duration: isMobile ? 1.15 : 1.45,
 
-            stagger: 0.08,
+            stagger: 0.12,
 
-            delay: 0.15,
+            delay: 0.22,
 
             ease: "power3.out",
           },
@@ -116,7 +117,7 @@ export function Hero() {
 
             duration: 1,
 
-            delay: 0.45,
+            delay: 0.65,
 
             ease: "power2.out",
           },
@@ -166,6 +167,11 @@ export function Hero() {
             moveY.tween.kill();
           };
         }
+        });
+
+        return () => {
+          window.cancelAnimationFrame(introFrame);
+        };
       }, hero);
 
       return () => {
@@ -248,7 +254,7 @@ export function Hero() {
             <div className="hero-text-mask mt-5 md:mt-7">
               <h1
                 dir="rtl"
-                className="type-display max-w-[1150px] text-[clamp(3.25rem,11vw,10rem)] font-light leading-[0.9] tracking-[-0.055em] md:leading-[0.86] md:tracking-[-0.065em]"
+                className="type-display max-w-[1150px] text-[clamp(3.25rem,11vw,10rem)] font-light leading-[0.9] tracking-[-0.045em] md:leading-[0.86] md:tracking-[-0.055em]"
               >
                 معماری که
                 <br />

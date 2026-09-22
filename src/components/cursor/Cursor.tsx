@@ -44,22 +44,22 @@ export function Cursor() {
     });
 
     const moveX = gsap.quickTo(cursor, "x", {
-      duration: 0.55,
+      duration: 0.5,
       ease: "power3.out",
     });
 
     const moveY = gsap.quickTo(cursor, "y", {
-      duration: 0.55,
+      duration: 0.5,
       ease: "power3.out",
     });
 
     const resize = gsap.quickTo(cursor, "width", {
-      duration: 0.35,
+      duration: 0.3,
       ease: "power3.out",
     });
 
     const resizeHeight = gsap.quickTo(cursor, "height", {
-      duration: 0.35,
+      duration: 0.3,
       ease: "power3.out",
     });
 
@@ -96,8 +96,8 @@ export function Cursor() {
       if (label) {
         gsap.to(label, {
           opacity: 1,
-          duration: 0.3,
-          delay: 0.08,
+          duration: 0.25,
+          delay: 0.06,
           overwrite: true,
         });
       }

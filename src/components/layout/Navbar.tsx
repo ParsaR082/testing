@@ -129,7 +129,7 @@ export function Navbar() {
               <span
                 className={[
                   "block h-px w-full origin-center",
-                  "bg-current transition-transform duration-500",
+                  "bg-current transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]",
                   menuOpen
                     ? "translate-y-[3px] rotate-45"
                     : "",
@@ -139,7 +139,7 @@ export function Navbar() {
               <span
                 className={[
                   "block h-px w-full origin-center",
-                  "bg-current transition-transform duration-500",
+                  "bg-current transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]",
                   menuOpen
                     ? "-translate-y-[3px] -rotate-45"
                     : "",

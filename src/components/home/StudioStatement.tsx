@@ -11,7 +11,7 @@ export function StudioStatement() {
     >
       <div className="mx-auto max-w-[1600px]">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
-          <div className="md:col-span-3">
+          <div className="md:col-span-3"><span className="section-index text-white/40">03</span>
             <TextReveal>
               <p className="text-[9px] font-medium tracking-[0.04em] text-white/40">
                 استودیو

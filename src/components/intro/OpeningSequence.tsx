@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type OpeningSequenceProps = {
   onComplete?: () => void;
@@ -9,11 +10,25 @@ type OpeningSequenceProps = {
 export function OpeningSequence({
   onComplete,
 }: OpeningSequenceProps) {
+  const pathname = usePathname();
+
   const [stage, setStage] = useState<
     "intro" | "reveal" | "complete"
   >("intro");
 
   useEffect(() => {
+    if (pathname !== "/") {
+      setStage("complete");
+      return;
+    }
+
+    const played = sessionStorage.getItem("urumsima-opening-complete");
+
+    if (played) {
+      setStage("complete");
+      return;
+    }
+
     document.body.style.overflow = "hidden";
 
     const revealTimer = window.setTimeout(() => {
@@ -22,6 +37,7 @@ export function OpeningSequence({
 
     const completeTimer = window.setTimeout(() => {
       setStage("complete");
+      sessionStorage.setItem("urumsima-opening-complete", "true");
       document.body.style.overflow = "";
       onComplete?.();
     }, 2850);
@@ -31,7 +47,7 @@ export function OpeningSequence({
       window.clearTimeout(completeTimer);
       document.body.style.overflow = "";
     };
-  }, [onComplete]);
+  }, [onComplete, pathname]);
 
   if (stage === "complete") return null;
 

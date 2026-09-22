@@ -37,10 +37,10 @@ export function ProjectCard({
             className="absolute inset-0 h-full w-full"
           />
 
-          <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-700 group-hover:bg-black/10">
+          <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:bg-black/15">
             <div
               dir="rtl"
-              className="pointer-events-none absolute inset-x-0 bottom-0 p-6 text-start opacity-0 transition-opacity duration-700 group-hover:opacity-100 md:p-8"
+              className="pointer-events-none absolute inset-x-0 bottom-0 p-6 text-start opacity-0 transition-opacity duration-600 group-hover:opacity-100 md:p-8"
             >
               <span className="text-[8px] font-medium leading-none tracking-[0.08em] text-white/80 md:text-[9px] md:tracking-[0.1em]">
                 مشاهده پروژه

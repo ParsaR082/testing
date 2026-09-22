@@ -35,13 +35,13 @@ export function Menu({ open, onClose }: MenuProps) {
         "fixed inset-0 z-[65] overflow-hidden",
         "bg-[#111111]/90 text-background",
         "backdrop-blur-md",
-        "transition-[clip-path] duration-700",
+        "transition-[clip-path] duration-[900ms]",
         "ease-[cubic-bezier(0.77,0,0.175,1)]",
       ].join(" ")}
       style={{
         clipPath: open
-          ? "circle(150% at calc(100% - 56px) 40px)"
-          : "circle(0% at calc(100% - 56px) 40px)",
+          ? "circle(150% at 56px 40px)"
+          : "circle(0% at 56px 40px)",
         pointerEvents: open ? "auto" : "none",
       }}
     >
@@ -63,13 +63,13 @@ export function Menu({ open, onClose }: MenuProps) {
         aria-expanded={open}
         dir="rtl"
         className={[
-          "group absolute right-6 top-0 z-30",
+          "group absolute left-6 top-0 z-30",
           "flex h-20 items-center gap-3",
           "text-[10px] font-medium leading-none",
           "tracking-[0.04em]",
           "text-background",
           "transition-opacity duration-500",
-          "md:right-10 md:text-[11px]",
+          "md:left-10 md:text-[11px]",
         ].join(" ")}
       >
         <span className="transition-opacity duration-300 group-hover:opacity-60">
@@ -107,7 +107,7 @@ export function Menu({ open, onClose }: MenuProps) {
               <li
                 key={link.href}
                 className={[
-                  "menu-item-mask transition-transform duration-700",
+                  "menu-item-mask transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]",
                   open
                     ? "translate-y-0"
                     : "translate-y-full",
@@ -124,7 +124,7 @@ export function Menu({ open, onClose }: MenuProps) {
                   dir="rtl"
                   className={[
                     "group relative z-10",
-                    "flex min-h-[64px]",
+                    "flex min-h-[52px]",
                     "cursor-pointer items-center gap-4",
                     "py-3",
                     "md:inline-flex md:min-h-0",
@@ -147,12 +147,12 @@ export function Menu({ open, onClose }: MenuProps) {
 
                   <span
                     className={[
-                      "text-[clamp(3rem,13vw,9rem)]",
+                      "text-[clamp(2rem,8vw,5.5rem)]",
                       "font-light leading-[0.9]",
                       "tracking-[-0.055em]",
                       "transition-opacity duration-300",
                       "group-hover:opacity-50",
-                      "md:leading-[0.86]",
+                      "md:leading-[0.92]",
                       "md:tracking-[-0.06em]",
                     ].join(" ")}
                   >

@@ -102,8 +102,11 @@ export function FeaturedProjects() {
                     </div>
                   </ImageReveal>
 
-                  <div className="mt-4 flex items-start justify-between gap-8 md:mt-5">
+                  <div className="meta-line mt-4 flex items-start justify-between gap-8 md:mt-5">
                     <div>
+                      <p className="editorial-label mb-2">
+                        {String(index + 1).padStart(2, "0")} / {project.category}
+                      </p>
                       <TextReveal>
                         <h3 className="text-[clamp(1.2rem,2vw,2rem)] font-light tracking-[-0.035em]">
                           {project.name}
