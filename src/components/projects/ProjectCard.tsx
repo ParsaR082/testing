@@ -22,7 +22,7 @@ export function ProjectCard({
   className = "",
 }: ProjectCardProps) {
   return (
-    <article dir="rtl" className={className}>
+    <article dir="rtl" className={`${className} min-w-0`}>
       <Link
         href={`/projects/${project.slug}`}
         className="group block"
@@ -49,7 +49,7 @@ export function ProjectCard({
           </div>
         </ImageReveal>
 
-        <div className="mt-5 md:mt-6">
+        <div className="mt-5 min-w-0 border-t border-black/10 pt-4 md:mt-6 md:pt-5">
           <TextReveal>
             <ProjectMeta project={project} />
           </TextReveal>
