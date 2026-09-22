@@ -75,7 +75,7 @@ export function HorizontalGallery({ items }: HorizontalGalleryProps) {
     >
       <div className="absolute inset-x-0 top-0 z-20 h-20 bg-[#0d0d0d]/85 backdrop-blur-md md:h-24" />
 
-      <div className="gallery-edge-fade gallery-edge-fade--left" aria-hidden="true" />\n      <div className="gallery-edge-fade gallery-edge-fade--right" aria-hidden="true" />\n      <div className="gallery-edge-line gallery-edge-line--left" aria-hidden="true" />\n      <div className="gallery-edge-line gallery-edge-line--right" aria-hidden="true" />\n\n      <div className="absolute right-6 top-7 z-30 md:right-10 md:top-9">
+      <div className="gallery-edge-fade gallery-edge-fade--left" aria-hidden="true" />\n      <div className="gallery-edge-fade gallery-edge-fade--right" aria-hidden="true" />\n      <div className="gallery-edge-line gallery-edge-line--left" aria-hidden="true" />\n      <div className="gallery-edge-line gallery-edge-line--right" aria-hidden="true" />     <div className="absolute right-6 top-7 z-30 md:right-10 md:top-9">
         <span className="text-[8px] font-medium text-background/45 md:text-[10px]">
           فضاهای منتخب
         </span>
