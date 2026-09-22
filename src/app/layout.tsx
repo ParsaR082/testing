@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
+import { Noto_Serif_Arabic } from "next/font/google";
 
 import "./globals.css";
 
@@ -29,6 +30,13 @@ const vazirmatn = localFont({
     },
   ],
   variable: "--font-vazirmatn",
+  display: "swap",
+});
+
+const notoSerifArabic = Noto_Serif_Arabic({
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-heading-arabic",
   display: "swap",
 });
 
@@ -121,7 +129,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${vazirmatn.variable} bg-background text-foreground antialiased`}
+        className={`${vazirmatn.variable} ${notoSerifArabic.variable} bg-background text-foreground antialiased`}
       >
         <SmoothScroll>
           <OpeningSequence />
