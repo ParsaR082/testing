@@ -7,7 +7,7 @@
   --dark: #111111;
   --border: rgba(17, 17, 17, 0.14);
 
-  --font-display: var(--font-vazirmatn);
+  --font-display: var(--font-heading-arabic);
   --font-body: var(--font-vazirmatn);
 
   --tracking-display: -0.025em;
