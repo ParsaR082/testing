@@ -179,6 +179,48 @@ export default function StudioPage() {
         </div>
       </section>
 
+      {/* SPATIAL NOTES */}
+      <section className="bg-background px-6 py-28 md:px-10 md:py-44">
+        <div className="mx-auto max-w-[1600px]">
+          <div dir="rtl" className="grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-8">
+            <div className="md:col-span-3">
+              <TextReveal>
+                <p className={`${sectionLabel} text-muted`}>یادداشت‌های فضایی</p>
+              </TextReveal>
+              <div className="mt-8 flex items-center gap-4">
+                <span className="arch-mark" aria-hidden="true" />
+                <span dir="ltr" className="text-[8px] tracking-[0.18em] text-muted/60">URUMSIMA / NOTES</span>
+              </div>
+            </div>
+
+            <div className="md:col-span-8 md:col-start-5">
+              <TextReveal>
+                <p className="studio-heading max-w-[820px] text-right text-[clamp(2.2rem,4vw,4.8rem)] font-light leading-[1.18] tracking-[-0.04em]">
+                  پیش از آنکه یک ساختمان دیده شود، از طریق نور، صدا، مقیاس و مسیر حرکت احساس می‌شود.
+                </p>
+              </TextReveal>
+
+              <div dir="rtl" className="mt-16 grid grid-cols-1 border-t border-black/10 md:mt-24 md:grid-cols-3">
+                {[
+                  { n: "۰۱", title: "ورود", text: "لحظه ورود باید ریتم فضا را آشکار کند؛ نه اینکه همه‌چیز را یک‌باره توضیح دهد." },
+                  { n: "۰۲", title: "مکث", text: "فضاهای آرام و خالی، همان‌قدر مهم‌اند که عناصر ساخته‌شده و پرجزئیات." },
+                  { n: "۰۳", title: "مسیر", text: "حرکت میان فضاها، معماری را از یک تصویر ثابت به یک تجربه پیوسته تبدیل می‌کند." },
+                ].map((item) => (
+                  <article key={item.n} className="border-b border-black/10 py-8 last:border-b-0 md:border-b-0 md:border-l md:px-8 md:py-10 md:first:pr-0 md:last:border-l-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[9px] text-foreground/40">{item.n}</span>
+                      <span className="h-2 w-2 rotate-45 border border-black/25" aria-hidden="true" />
+                    </div>
+                    <h3 className="studio-heading mt-8 text-right text-[clamp(1.8rem,2.6vw,3rem)] font-light leading-none tracking-[-0.03em]">{item.title}</h3>
+                    <p className="mt-6 max-w-[280px] text-right text-[11px] leading-[1.9] text-foreground/55">{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* BEYOND FORM */}
       <section className="bg-background px-6 pb-28 pt-12 md:px-10 md:pb-48 md:pt-24">
         <div dir="rtl" className="mx-auto grid max-w-[1600px] grid-cols-1 gap-16 md:grid-cols-12 md:gap-8">
