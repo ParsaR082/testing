@@ -33,7 +33,7 @@ const vazirmatn = localFont({
   display: "swap",
 });
 
-const alexandria = Noto_Serif_Arabic({
+const alexandria = Alexandria({
   subsets: ["arabic"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-heading-arabic",
@@ -129,7 +129,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${vazirmatn.variable} ${notoSerifArabic.variable} bg-background text-foreground antialiased`}
+        className={`${vazirmatn.variable} ${alexandria.variable} bg-background text-foreground antialiased`}
       >
         <SmoothScroll>
           <OpeningSequence />
