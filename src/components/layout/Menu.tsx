@@ -139,7 +139,7 @@ export function Menu({ open, onClose }: MenuProps) {
                       "tracking-[0.16em]",
                       "text-background/35",
                       "md:w-auto md:text-[10px]",
-                      "md:tracking-[0.18em]",
+                      "md:tracking-[0.18em] pb-10",
                     ].join(" ")}
                   >
                     0{index + 1}

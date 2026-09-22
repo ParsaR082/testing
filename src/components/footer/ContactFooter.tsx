@@ -14,18 +14,20 @@ export function ContactFooter() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-3">
               <TextReveal>
-                <p className="text-[9px] font-medium tracking-[0.04em] text-muted">
+                <p className="text-[11px] font-medium tracking-[0.44em] text-muted">
                   شروع یک گفت‌وگو
+                  
                 </p>
               </TextReveal>
             </div>
 
             <div className="md:col-span-8 md:col-start-5">
               <TextReveal>
-                <h2 className="max-w-[1000px] text-[clamp(3rem,7vw,8rem)] font-light leading-[0.88] tracking-[-0.065em]">
+                <h2 className="max-w-[1000px] text-[clamp(2rem,5vw,8rem)] font-light leading-[0.88] pb-2">
                   بیایید مکانی خلق کنیم که ارزش به یاد
                   ماندن داشته باشد.
                 </h2>
+                
               </TextReveal>
 
               <div className="mt-10 flex flex-col gap-7 md:mt-14 md:flex-row md:items-center md:justify-between">

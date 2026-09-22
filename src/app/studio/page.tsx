@@ -31,7 +31,7 @@ export default function StudioPage() {
 
             <div className="md:col-span-8 md:col-start-4">
               <TextReveal>
-                <h1 className="studio-heading max-w-[1000px] text-right text-[clamp(4rem,9.2vw,10rem)] font-light leading-[1.08] tracking-[-0.045em]">
+                <h1 className="studio-heading max-w-[1000px] text-right text-[clamp(4rem,9.2vw,10rem)] font-light leading-[1.08] tracking-[-0.045em] pb-2">
                   فضا
                   <br />
                   یک تجربه است.

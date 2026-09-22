@@ -18,7 +18,7 @@ export default function ProjectsPage() {
 
             <div className="md:col-span-8 md:col-start-4">
               <TextReveal>
-                <h1 className="max-w-[1000px] text-[clamp(4rem,9vw,9.5rem)] font-light leading-[0.9] tracking-[-0.065em]">
+                <h1 className="max-w-[1000px] text-[clamp(4rem,9vw,9.5rem)] font-light leading-[0.9] tracking-[-0.065em] pb-6">
                   پروژه‌ها
                 </h1>
               </TextReveal>

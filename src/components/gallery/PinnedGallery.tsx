@@ -130,7 +130,7 @@ export function PinnedGallery({
 
       <div className="mx-auto hidden h-full w-full max-w-[1600px] grid-cols-[0.8fr_1.2fr] gap-16 px-10 py-24 md:grid">
         <div className="flex flex-col justify-between">
-          <div>
+          <div className="pb-8">
             <span className="text-[8px] font-medium leading-none tracking-[0.08em] text-foreground/45 md:text-[10px] md:tracking-[0.1em]">
               اصول فضایی
             </span>
