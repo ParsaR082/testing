@@ -1,159 +1,153 @@
 "use client";
 
 import Image from "next/image";
-
 import { useEffect, useRef, useState } from "react";
 
 import { useGSAP } from "@gsap/react";
-
 import gsap from "gsap";
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-
   const imageRef = useRef<HTMLDivElement>(null);
-
   const contentRef = useRef<HTMLDivElement>(null);
-
   const metaRef = useRef<HTMLDivElement>(null);
+  const supportingRef = useRef<HTMLDivElement>(null);
 
-  const [visible, setVisible] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    const start = () => setReady(true);
+
     const hasVisitedSite = sessionStorage.getItem(
       "urumsima-site-visited",
     );
 
-    if (hasVisitedSite) {
-      setVisible(true);
+    if (
+      hasVisitedSite ||
+      document.documentElement.dataset.siteIntro === "complete"
+    ) {
+      start();
       return;
     }
 
-    const timer = window.setTimeout(() => {
-      setVisible(true);
-
-      sessionStorage.setItem(
-        "urumsima-site-visited",
-        "true",
-      );
-    }, 2850);
+    window.addEventListener("urumsima:intro-complete", start, {
+      once: true,
+    });
 
     return () => {
-      window.clearTimeout(timer);
+      window.removeEventListener("urumsima:intro-complete", start);
     };
   }, []);
 
   useGSAP(
     () => {
-      if (!visible) return;
+      if (!ready) return;
 
       const hero = heroRef.current;
-
       const image = imageRef.current;
-
       const content = contentRef.current;
-
       const meta = metaRef.current;
+      const supporting = supportingRef.current;
 
-      if (!hero || !image || !content || !meta) return;
+      if (!hero || !image || !content || !meta || !supporting) return;
 
       const isMobile = window.matchMedia(
         "(max-width: 767px)",
       ).matches;
 
       const context = gsap.context(() => {
-        gsap.fromTo(
+        const tl = gsap.timeline({
+          defaults: {
+            ease: "power3.out",
+          },
+        });
+
+        tl.fromTo(
           image,
           {
-            scale: isMobile ? 1.035 : 1.08,
-
+            scale: isMobile ? 1.035 : 1.07,
+            opacity: 0.92,
             x: 0,
-
             y: 0,
           },
           {
             scale: 1,
-
-            duration: isMobile ? 2.2 : 2.8,
-
-            ease: "power3.out",
+            opacity: 1,
+            duration: isMobile ? 1.8 : 2.4,
           },
+          0,
         );
 
-        gsap.fromTo(
+        tl.fromTo(
+          meta,
+          {
+            opacity: 0,
+            y: isMobile ? 10 : 16,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+          },
+          0.12,
+        );
+
+        tl.fromTo(
           content.children,
           {
-            yPercent: 110,
-
+            yPercent: 118,
             opacity: 0,
           },
           {
             yPercent: 0,
-
             opacity: 1,
-
-            duration: isMobile ? 1 : 1.25,
-
-            stagger: 0.08,
-
-            delay: 0.15,
-
-            ease: "power3.out",
+            duration: isMobile ? 1 : 1.15,
+            stagger: 0.1,
+            ease: "power4.out",
           },
+          0.2,
         );
 
-        gsap.fromTo(
-          meta,
+        tl.fromTo(
+          supporting.children,
           {
             opacity: 0,
-
-            y: isMobile ? 12 : 18,
+            y: isMobile ? 10 : 14,
           },
           {
             opacity: 1,
-
             y: 0,
-
-            duration: 1,
-
-            delay: 0.45,
-
+            duration: 0.85,
+            stagger: 0.08,
             ease: "power2.out",
           },
+          0.55,
         );
 
         if (!isMobile) {
           const moveX = gsap.quickTo(image, "x", {
             duration: 1.4,
-
             ease: "power3.out",
           });
 
           const moveY = gsap.quickTo(image, "y", {
             duration: 1.4,
-
             ease: "power3.out",
           });
 
           const handleMouseMove = (event: MouseEvent) => {
             const x =
               (event.clientX / window.innerWidth - 0.5) * 2;
-
             const y =
               (event.clientY / window.innerHeight - 0.5) * 2;
 
             moveX(x * 10);
-
             moveY(y * 7);
           };
 
-          window.addEventListener(
-            "mousemove",
-            handleMouseMove,
-            {
-              passive: true,
-            },
-          );
+          window.addEventListener("mousemove", handleMouseMove, {
+            passive: true,
+          });
 
           return () => {
             window.removeEventListener(
@@ -162,7 +156,6 @@ export function Hero() {
             );
 
             moveX.tween.kill();
-
             moveY.tween.kill();
           };
         }
@@ -174,8 +167,7 @@ export function Hero() {
     },
     {
       scope: heroRef,
-
-      dependencies: [visible],
+      dependencies: [ready],
     },
   );
 
@@ -186,8 +178,7 @@ export function Hero() {
       className={[
         "hero relative isolate min-h-[100svh] overflow-hidden",
         "bg-[#111111] text-background",
-        "transition-opacity duration-700",
-        visible ? "opacity-100" : "opacity-0",
+        ready ? "opacity-100" : "opacity-0",
       ].join(" ")}
     >
       <div className="absolute inset-0 overflow-hidden">
@@ -206,9 +197,7 @@ export function Hero() {
         </div>
 
         <div className="absolute inset-0 bg-black/10" />
-
         <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-black/15" />
-
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/10" />
       </div>
 
@@ -224,7 +213,10 @@ export function Hero() {
             Urumia / Iran
           </span>
 
-          <span className="text-[7px] font-medium uppercase leading-none tracking-[0.22em] text-white/65 md:text-[9px] md:tracking-[0.24em]">
+          <span
+            dir="rtl"
+            className="text-[7px] font-medium leading-[1.5] tracking-0 text-white/65 md:text-[9px]"
+          >
             استودیوی معماری
           </span>
         </div>
@@ -232,10 +224,7 @@ export function Hero() {
 
       <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-10 md:px-10 md:pb-12">
         <div className="mx-auto max-w-[1600px]">
-          <div
-            ref={contentRef}
-            className="max-w-[1250px]"
-          >
+          <div ref={contentRef} className="max-w-[1250px]">
             <div className="hero-text-mask">
               <p
                 dir="ltr"
@@ -248,7 +237,7 @@ export function Hero() {
             <div className="hero-text-mask mt-5 md:mt-7">
               <h1
                 dir="rtl"
-                className="type-display max-w-[1150px] text-[clamp(3.25rem,11vw,10rem)] font-light leading-[0.9] tracking-[-0.055em] md:leading-[0.86] md:tracking-[-0.065em]"
+                className="type-display max-w-[1150px] text-[clamp(3.25rem,11vw,10rem)] font-light leading-[1.04] tracking-0 md:leading-[1.02]"
               >
                 معماری که
                 <br />
@@ -260,15 +249,16 @@ export function Hero() {
           </div>
 
           <div
+            ref={supportingRef}
             dir="rtl"
             className="mt-10 flex items-end justify-between gap-8 md:mt-12"
           >
-            <p className="type-body max-w-[240px] text-[9px] font-normal leading-[1.55] tracking-[-0.005em] text-white/55 md:max-w-[280px] md:text-[11px] md:leading-[1.6]">
+            <p className="type-body max-w-[240px] text-[9px] font-normal leading-[1.8] tracking-0 text-white/55 md:max-w-[280px] md:text-[11px]">
               فضا، نور، متریال و حرکت؛ در کنار یکدیگر و در
               خدمت تجربه انسانی در نظر گرفته می‌شوند.
             </p>
 
-            <span className="hidden text-[8px] font-medium leading-none tracking-[0.04em] text-white/45 md:block md:text-[9px]">
+            <span className="hidden text-[8px] font-medium leading-[1.5] tracking-0 text-white/45 md:block md:text-[9px]">
               برای کاوش اسکرول کنید
             </span>
 

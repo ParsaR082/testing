@@ -10,10 +10,10 @@
   --font-display: var(--font-vazirmatn);
   --font-body: var(--font-vazirmatn);
 
-  --tracking-display: -0.025em;
+  --tracking-display: 0;
   --tracking-body: 0;
-  --tracking-meta: 0.04em;
-  --tracking-brand: 0.06em;
+  --tracking-meta: 0;
+  --tracking-brand: 0;
 }
 
 @theme inline {

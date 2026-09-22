@@ -1,0 +1,4 @@
+// Hero synchronization patch
+// Keep your existing Hero animations.
+// Remove independent sessionStorage timing and start after:
+// window event: "urumsima:intro-complete"
