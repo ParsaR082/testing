@@ -17,7 +17,7 @@ const sectionLabel =
 
 export default function StudioPage() {
   return (
-    <main className="studio-section bg-background text-foreground">
+    <main className="studio-section bg-background text-foreground">\n      <div aria-hidden="true" className="pointer-events-none fixed inset-y-0 right-4 z-10 hidden w-px bg-black/[0.06] md:block" />
       {/* HERO */}
       <section className="bg-background px-6 pb-24 pt-32 md:px-10 md:pb-40 md:pt-48">
         <div className="mx-auto max-w-[1600px]">
@@ -31,7 +31,7 @@ export default function StudioPage() {
 
             <div className="md:col-span-8 md:col-start-4">
               <TextReveal>
-                <h1 className="max-w-[1000px] text-right text-[clamp(4.5rem,10vw,10.5rem)] font-light leading-[1.02] tracking-[-0.035em]">
+                <h1 className="studio-heading max-w-[1000px] text-right text-[clamp(4rem,9.2vw,10rem)] font-light leading-[1.08] tracking-[-0.045em]">
                   فضا
                   <br />
                   یک تجربه است.
@@ -39,7 +39,7 @@ export default function StudioPage() {
               </TextReveal>
 
               <TextReveal delay={0.12}>
-                <p className="mt-10 max-w-[430px] text-right text-[11px] font-normal leading-[1.9] tracking-[-0.005em] text-muted md:mr-auto md:mt-14">
+                <p className="mt-10 max-w-[460px] text-right text-[12px] font-normal leading-[2] tracking-[-0.005em] text-muted md:mr-auto md:mt-14">
                   ما فضا را تنها به‌عنوان یک فرم نمی‌بینیم؛ بلکه آن را
                   به‌عنوان تجربه‌ای میان نور، متریال، تناسب و زندگی روزمره
                   درک می‌کنیم.
@@ -66,7 +66,7 @@ export default function StudioPage() {
       </section>
 
       {/* APPROACH */}
-      <section className="bg-[#e8e2d8] px-6 pb-28 pt-24 md:px-10 md:pb-48 md:pt-32">
+      <section className="bg-[#e8e2d8] relative px-6 pb-28 pt-24 md:px-10 md:pb-48 md:pt-32">
         <div className="mx-auto max-w-[1600px]">
           <div dir="rtl" className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-2">
@@ -80,7 +80,7 @@ export default function StudioPage() {
 
             <div className="md:col-span-7 md:col-start-6">
               <TextReveal>
-                <p className="max-w-[820px] text-right text-[clamp(2.6rem,5vw,5.8rem)] font-light leading-[1.08] tracking-[-0.035em]">
+                <p className="studio-heading max-w-[760px] text-right text-[clamp(2.5rem,4.7vw,5.5rem)] font-light leading-[1.18] tracking-[-0.045em]">
                   معماری با درک این آغاز می‌شود که یک فضا باید چه احساسی
                   ایجاد کند، نه صرفاً چگونه به نظر برسد.
                 </p>
@@ -105,7 +105,7 @@ export default function StudioPage() {
 
             <div className="md:col-span-8 md:col-start-2 md:row-start-1 md:self-end">
               <TextReveal>
-                <p className="max-w-[1050px] text-right text-[clamp(2.8rem,5.8vw,6.8rem)] font-light leading-[1.08] tracking-[-0.035em]">
+                <p className="studio-heading max-w-[980px] text-right text-[clamp(2.6rem,5.4vw,6.5rem)] font-light leading-[1.16] tracking-[-0.045em]">
                   ما مکان‌هایی خلق می‌کنیم که بخشی از شیوه به یاد آوردن یک
                   لحظه توسط انسان می‌شوند.
                 </p>
@@ -139,7 +139,7 @@ export default function StudioPage() {
             </div>
           </div>
 
-          <div dir="rtl" className="mt-16 grid grid-cols-1 md:mt-24 md:grid-cols-3">
+          <div dir="rtl" className="mt-16 grid grid-cols-1 border-t border-black/10 md:mt-24 md:grid-cols-3">
             {[
               {
                 n: "۰۱",
@@ -167,7 +167,7 @@ export default function StudioPage() {
                 <span className="text-[9px] font-medium leading-[1.4] text-foreground/45">
                   {item.n}
                 </span>
-                <h2 className="mt-8 text-right text-[clamp(2.2rem,3.2vw,3.8rem)] font-light leading-[1.08] tracking-[-0.03em] transition-transform duration-700 group-hover:-translate-y-1">
+                <h2 className="studio-heading mt-8 text-right text-[clamp(2.2rem,3.2vw,3.8rem)] font-light leading-[1.08] tracking-[-0.03em] transition-transform duration-700 group-hover:-translate-y-1">
                   {item.title}
                 </h2>
                 <p className="mt-8 max-w-[320px] text-right text-[12px] leading-[1.9] tracking-[-0.005em] text-foreground/60">
@@ -248,7 +248,7 @@ export default function StudioPage() {
       </section>
 
       {/* DARK STATEMENT */}
-      <section className="bg-dark px-6 py-28 text-background md:px-10 md:py-48">
+      <section className="relative overflow-hidden bg-dark px-6 py-28 text-background md:px-10 md:py-48">\n        <div aria-hidden="true" className="absolute -left-24 top-1/2 h-72 w-72 rounded-full border border-white/10 md:h-96 md:w-96" />
         <div className="mx-auto max-w-[1600px]">
           <div dir="rtl" className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-2">
@@ -258,7 +258,7 @@ export default function StudioPage() {
             </div>
             <div className="md:col-span-8 md:col-start-4">
               <TextReveal>
-                <p className="max-w-[1050px] text-right text-[clamp(2.8rem,5.8vw,6.8rem)] font-light leading-[1.08] tracking-[-0.035em]">
+                <p className="studio-heading max-w-[1050px] text-right text-[clamp(2.8rem,5.8vw,6.8rem)] font-light leading-[1.16] tracking-[-0.045em]">
                   معماری باید مدت‌ها پس از ترک یک فضا نیز با شما باقی بماند.
                 </p>
               </TextReveal>
