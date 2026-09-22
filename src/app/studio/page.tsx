@@ -17,7 +17,7 @@ const sectionLabel =
 
 export default function StudioPage() {
   return (
-    <main className="studio-section bg-background text-foreground">\n      <div aria-hidden="true" className="pointer-events-none fixed inset-y-0 right-4 z-10 hidden w-px bg-black/[0.06] md:block" />
+    <main className="studio-section bg-background text-foreground">     <div aria-hidden="true" className="pointer-events-none fixed inset-y-0 right-4 z-10 hidden w-px bg-black/[0.06] md:block" />
       {/* HERO */}
       <section className="bg-background px-6 pb-24 pt-32 md:px-10 md:pb-40 md:pt-48">
         <div className="mx-auto max-w-[1600px]">
@@ -248,7 +248,7 @@ export default function StudioPage() {
       </section>
 
       {/* DARK STATEMENT */}
-      <section className="relative overflow-hidden bg-dark px-6 py-28 text-background md:px-10 md:py-48">\n        <div aria-hidden="true" className="absolute -left-24 top-1/2 h-72 w-72 rounded-full border border-white/10 md:h-96 md:w-96" />
+      <section className="relative overflow-hidden bg-dark px-6 py-28 text-background md:px-10 md:py-48">        <div aria-hidden="true" className="absolute -left-24 top-1/2 h-72 w-72 rounded-full border border-white/10 md:h-96 md:w-96" />
         <div className="mx-auto max-w-[1600px]">
           <div dir="rtl" className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-2">
