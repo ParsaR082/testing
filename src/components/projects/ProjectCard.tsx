@@ -25,10 +25,10 @@ export function ProjectCard({
     <article dir="rtl" className={`${className} min-w-0`}>
       <Link
         href={`/projects/${project.slug}`}
-        className="group block"
+        className="group block overflow-hidden rounded-[20px] bg-background shadow-[0_10px_35px_rgba(0,0,0,0.07)] transition-[transform,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(0,0,0,0.1)]"
         aria-label={`مشاهده پروژه ${project.name}`}
       >
-        <ImageReveal className="aspect-[4/5] bg-[#e8e5df]">
+        <ImageReveal className="aspect-[4/5] overflow-hidden bg-[#e8e5df]">
           <ParallaxImage
             src={project.image}
             alt={project.name}
@@ -49,7 +49,7 @@ export function ProjectCard({
           </div>
         </ImageReveal>
 
-        <div className="mt-5 min-w-0 border-t border-black/10 pt-4 md:mt-6 md:pt-5">
+        <div className="min-w-0 border-t border-black/10 px-5 pb-5 pt-4 md:px-7 md:pb-7 md:pt-5">
           <TextReveal>
             <ProjectMeta project={project} />
           </TextReveal>
