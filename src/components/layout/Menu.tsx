@@ -147,7 +147,7 @@ export function Menu({ open, onClose }: MenuProps) {
 
                   <span
                     className={[
-                      "text-[clamp(2rem,8vw,5.5rem)]",
+                      "arshia text-[clamp(2rem,8vw,5.5rem)]",
                       "font-light leading-[0.9]",
                       "tracking-[-0.055em]",
                       "transition-opacity duration-300",

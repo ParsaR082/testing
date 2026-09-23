@@ -135,7 +135,7 @@ export function PinnedGallery({
               اصول فضایی
             </span>
 
-            <h2 className="mt-8 max-w-[600px] text-[clamp(2.5rem,6vw,6rem)] font-light leading-[0.94] tracking-[-0.055em]">
+            <h2 className="arshia mt-8 max-w-[600px] text-[clamp(2.5rem,6vw,6rem)] font-light leading-[0.94] tracking-[-0.055em]">
               فضا فقط
               <br />
               اشغال نمی‌شود.

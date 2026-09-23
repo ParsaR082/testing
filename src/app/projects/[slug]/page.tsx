@@ -43,7 +43,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </p>
               </TextReveal>
               <div className="mt-7 md:mt-9">
-                <h1 className="max-w-[1100px] text-[clamp(4rem,9vw,10rem)] font-light leading-[0.86] tracking-[-0.065em]">
+                <h1 className="arshia max-w-[1100px] text-[clamp(4rem,9vw,10rem)] font-light leading-[0.86] tracking-[-0.065em]">
                   {project.name}
                 </h1>
               </div>
@@ -75,7 +75,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
             <div className="md:col-span-7 md:col-start-5">
               <TextReveal>
-                <p className="text-[clamp(2rem,3.5vw,4rem)] font-light leading-[1.18] tracking-[-0.035em] text-white/90">
+                <p className="arshia text-[clamp(2rem,3.5vw,4rem)] font-light leading-[1.18] tracking-[-0.035em] text-white/90">
                   {project.description}
                 </p>
               </TextReveal>
@@ -121,7 +121,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <div className="flex flex-col gap-8 md:flex-row-reverse md:items-end md:justify-between">
               <div>
                 <p className="text-[9px] font-medium tracking-[0.04em] text-muted">ادامه کاوش</p>
-                <h2 className="mt-4 text-[clamp(2.5rem,5vw,6rem)] font-light leading-[0.92] tracking-[-0.05em]">
+                <h2 className="arshia mt-4 text-[clamp(2.5rem,5vw,6rem)] font-light leading-[0.92] tracking-[-0.05em]">
                   پروژه‌های بیشتر
                 </h2>
               </div>

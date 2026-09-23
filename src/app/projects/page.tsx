@@ -18,7 +18,7 @@ export default function ProjectsPage() {
 
             <div className="md:col-span-8 md:col-start-4">
               <TextReveal>
-                <h1 className="max-w-[1000px] text-[clamp(4rem,9vw,9.5rem)] font-light leading-[0.9] tracking-[-0.065em] pb-6">
+                <h1 className="arshia max-w-[1000px] text-[clamp(4rem,9vw,9.5rem)] font-light leading-[0.9] tracking-[-0.065em] pb-6">
                   پروژه‌ها
                 </h1>
               </TextReveal>
@@ -65,7 +65,7 @@ export default function ProjectsPage() {
             </div>
             <div className="md:col-span-8 md:col-start-5">
               <TextReveal>
-                <p className="text-[clamp(2.6rem,5vw,5.8rem)] font-light leading-[1.05] tracking-[-0.04em]">
+                <p className="arshia text-[clamp(2.6rem,5vw,5.8rem)] font-light leading-[1.05] tracking-[-0.04em]">
                   هر پروژه، شروع یک پرسش تازه درباره فضاست.
                 </p>
               </TextReveal>
