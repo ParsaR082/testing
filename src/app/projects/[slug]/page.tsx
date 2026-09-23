@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <div data-reveal><p className="eyebrow">{project.category} · {project.location} · {project.year}</p><h1 className="display-tight mt-6">{project.title}</h1></div>
             <p data-reveal className="body-copy max-w-xl md:justify-self-end">{project.description}</p>
           </div>
-          <div data-image-reveal className="image-frame mt-20 aspect-[16/10] md:mt-32"><Image src={project.image} alt={project.title} fill priority sizes="(max-width:767px) 100vw,90vw" className="object-cover" /></div>
+          <div data-image-reveal data-transition-hero className="image-frame mt-20 aspect-[16/10] md:mt-32"><Image src={project.image} alt={project.title} fill priority sizes="(max-width:767px) 100vw,90vw" className="object-cover" /></div>
         </div>
       </section>
       <section className="px-4 py-20 md:px-8 md:py-36">
