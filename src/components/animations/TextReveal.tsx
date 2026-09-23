@@ -1,7 +1,6 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,11 +12,6 @@ type TextRevealProps = {
   delay?: number;
 };
 
-/**
- * Extra clip-safe space as a fraction of the revealed text's font-size.
- * Persian display glyphs (ی, ر, ق, dots) routinely paint outside a tight
- * line-box; the mask must include that ink without loosening leading.
- */
 export function TextReveal({
   children,
   className = "",
@@ -33,26 +27,69 @@ export function TextReveal({
     if (!root || !element) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        element,
-        {
-          yPercent: 110,
-          opacity: 0,
-        },
-        {
-          yPercent: 0,
-          opacity: 1,
-          duration: 1.25,
-          delay,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: element,
-            start: "top 90%",
-            once: true,
+      gsap.set(element, {
+        yPercent: 110,
+        opacity: 0,
+      });
+
+      const animateIn = (fromY: number) => {
+        gsap.killTweensOf(element);
+
+        gsap.fromTo(
+          element,
+          {
+            yPercent: fromY,
+            opacity: 0,
           },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 1.25,
+            delay,
+            ease: "power4.out",
+            overwrite: true,
+          },
+        );
+      };
+
+      const animateOut = (toY: number) => {
+        gsap.killTweensOf(element);
+
+        gsap.to(element, {
+          yPercent: toY,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.inOut",
+          overwrite: true,
+        });
+      };
+
+      ScrollTrigger.create({
+        trigger: root,
+
+        // ورود کمی قبل از رسیدن المان به مرکز صفحه
+        start: "top 90%",
+
+        // خروج در حالی که هنوز 25٪ از viewport باقی مانده
+        end: "bottom 25%",
+
+        onEnter: () => {
+          animateIn(110);
         },
-      );
-    }, element);
+
+        onLeave: () => {
+          animateOut(-110);
+        },
+
+        onEnterBack: () => {
+          animateIn(-110);
+        },
+
+        onLeaveBack: () => {
+          animateOut(110);
+        },
+      });
+    }, root);
 
     return () => {
       ctx.revert();

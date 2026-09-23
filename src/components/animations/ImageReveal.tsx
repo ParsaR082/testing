@@ -1,7 +1,6 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -26,26 +25,68 @@ export function ImageReveal({
     if (!container) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        container,
-        {
-          clipPath: "inset(100% 0% 0% 0%)",
-        },
-        {
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.4,
-          delay,
-          ease: "power4.inOut",
-          scrollTrigger: {
-            trigger: container,
-            start: "top 88%",
-            once: true,
+      gsap.set(container, {
+        clipPath: "inset(100% 0% 0% 0%)",
+      });
+
+      const animateIn = (fromClip: string) => {
+        gsap.killTweensOf(container);
+
+        gsap.fromTo(
+          container,
+          {
+            clipPath: fromClip,
           },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.4,
+            delay,
+            ease: "power4.inOut",
+            overwrite: true,
+          },
+        );
+      };
+
+      const animateOut = (toClip: string) => {
+        gsap.killTweensOf(container);
+
+        gsap.to(container, {
+          clipPath: toClip,
+          duration: 1.1,
+          ease: "power4.inOut",
+          overwrite: true,
+        });
+      };
+
+      ScrollTrigger.create({
+        trigger: container,
+
+        start: "top 88%",
+
+        // خروج زمانی شروع می‌شود که هنوز بخشی از تصویر دیده می‌شود
+        end: "bottom 25%",
+
+        onEnter: () => {
+          animateIn("inset(100% 0% 0% 0%)");
         },
-      );
+
+        onLeave: () => {
+          animateOut("inset(0% 0% 100% 0%)");
+        },
+
+        onEnterBack: () => {
+          animateIn("inset(0% 0% 100% 0%)");
+        },
+
+        onLeaveBack: () => {
+          animateOut("inset(100% 0% 0% 0%)");
+        },
+      });
     }, container);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, [delay]);
 
   return (
