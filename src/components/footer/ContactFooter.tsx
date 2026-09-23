@@ -34,39 +34,45 @@ export function ContactFooter() {
 
               <div className="mt-8 flex flex-col gap-7 md:mt-10 md:flex-row md:items-center md:justify-between">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-7">
-                  <a
-                    href="mailto:studio@urumsima.com"
-                    dir="ltr"
-                    className="group inline-flex w-fit items-center gap-4 text-[11px] font-medium tracking-[0.04em]"
-                  >
-                    <span className="border-b border-black/20 pb-1 transition-colors duration-500 group-hover:border-black">
-                      studio@urumsima.com
-                    </span>
+                  <TextReveal delay={0.08}>
+                    <a
+                      href="mailto:studio@urumsima.com"
+                      dir="ltr"
+                      className="group inline-flex w-fit items-center gap-4 text-[11px] font-medium tracking-[0.04em]"
+                    >
+                      <span className="border-b border-black/20 pb-1 transition-colors duration-500 group-hover:border-black">
+                        studio@urumsima.com
+                      </span>
 
-                    <span className="transition-transform duration-500 group-hover:-translate-x-2">
-                      ←
-                    </span>
-                  </a>
+                      <span className="transition-transform duration-500 group-hover:-translate-x-2">
+                        ←
+                      </span>
+                    </a>
+                  </TextReveal>
 
-                  <a
-                    href="tel:09123456789"
-                    dir="ltr"
-                    className="inline-flex w-fit border-b border-black/20 pb-1 text-[11px] font-medium tracking-[0.04em] transition-colors duration-500 hover:border-black"
-                  >
-                    09123456789
-                  </a>
+                  <TextReveal delay={0.16}>
+                    <a
+                      href="tel:09123456789"
+                      dir="ltr"
+                      className="inline-flex w-fit border-b border-black/20 pb-1 text-[11px] font-medium tracking-[0.04em] transition-colors duration-500 hover:border-black"
+                    >
+                      09123456789
+                    </a>
+                  </TextReveal>
                 </div>
 
-                <Link
-                  href="/projects"
-                  dir="rtl"
-                  className="group inline-flex w-fit items-center gap-3 text-[10px] font-medium tracking-[0.04em] text-muted transition-colors duration-300 hover:text-foreground"
-                >
-                  <span>مشاهده پروژه‌های ما</span>
-                  <span className="transition-transform duration-500 group-hover:-translate-x-1">
-                    ←
-                  </span>
-                </Link>
+                <TextReveal delay={0.24}>
+                  <Link
+                    href="/projects"
+                    dir="rtl"
+                    className="group inline-flex w-fit items-center gap-3 text-[10px] font-medium tracking-[0.04em] text-muted transition-colors duration-300 hover:text-foreground"
+                  >
+                    <span>مشاهده پروژه‌های ما</span>
+                    <span className="transition-transform duration-500 group-hover:-translate-x-1">
+                      ←
+                    </span>
+                  </Link>
+                </TextReveal>
               </div>
             </div>
           </div>
