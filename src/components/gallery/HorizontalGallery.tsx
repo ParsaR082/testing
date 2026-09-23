@@ -96,7 +96,7 @@ export function HorizontalGallery({ items }: HorizontalGalleryProps) {
                 src={item.src}
                 alt={item.alt}
                 fill
-                sizes="46vw"
+                sizes="(max-width: 1024px) 46vw, 760px"
                 priority={index === 0}
                 className="object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.025]"
               />
