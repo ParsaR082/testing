@@ -28,25 +28,19 @@ export function TextReveal({
     if (!root || !element) return;
 
     const ctx = gsap.context(() => {
-      // Initial state
-      gsap.set(element, {
-        yPercent: 110,
-        opacity: 0,
-      });
-
-      const animateIn = (from: number) => {
+      const showFromBottom = () => {
         gsap.killTweensOf(element);
 
         gsap.fromTo(
           element,
           {
-            yPercent: from,
+            yPercent: 110,
             opacity: 0,
           },
           {
             yPercent: 0,
             opacity: 1,
-            duration: 1.15,
+            duration: 1.2,
             delay,
             ease: "power4.out",
             overwrite: true,
@@ -54,42 +48,92 @@ export function TextReveal({
         );
       };
 
-      const animateOut = (to: number) => {
+      const showFromTop = () => {
+        gsap.killTweensOf(element);
+
+        gsap.fromTo(
+          element,
+          {
+            yPercent: -110,
+            opacity: 0,
+          },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 1.2,
+            delay,
+            ease: "power4.out",
+            overwrite: true,
+          },
+        );
+      };
+
+      const hideToTop = () => {
         gsap.killTweensOf(element);
 
         gsap.to(element, {
-          yPercent: to,
+          yPercent: -110,
           opacity: 0,
-          duration: 0.85,
+          duration: 0.9,
           ease: "power3.inOut",
           overwrite: true,
         });
       };
 
+      const hideToBottom = () => {
+        gsap.killTweensOf(element);
+
+        gsap.to(element, {
+          yPercent: 110,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.inOut",
+          overwrite: true,
+        });
+      };
+
+      /*
+       * Start hidden.
+       *
+       * The element is positioned below its mask until
+       * ScrollTrigger detects that it has entered the viewport.
+       */
+      gsap.set(element, {
+        yPercent: 110,
+        opacity: 0,
+      });
+
       ScrollTrigger.create({
         trigger: root,
 
-        // ورود به viewport
-        start: "top 90%",
+        start: "top 92%",
+        end: "bottom 20%",
 
-        // خروج قبل از اینکه کاملاً از viewport خارج شود
-        end: "bottom 25%",
+        onEnter: showFromBottom,
+        onLeave: hideToTop,
 
-        onEnter: () => {
-          animateIn(110);
+        onEnterBack: showFromTop,
+        onLeaveBack: hideToBottom,
+
+        /*
+         * Important for elements near the bottom of the page.
+         */
+        onRefresh: (self) => {
+          if (self.isActive) {
+            gsap.set(element, {
+              yPercent: 0,
+              opacity: 1,
+            });
+          }
         },
+      });
 
-        onLeave: () => {
-          animateOut(-110);
-        },
-
-        onEnterBack: () => {
-          animateIn(-110);
-        },
-
-        onLeaveBack: () => {
-          animateOut(110);
-        },
+      /*
+       * Give ScrollTrigger one frame to calculate the final
+       * layout after the component has mounted.
+       */
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
       });
     }, root);
 

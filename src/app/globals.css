@@ -234,11 +234,13 @@ img {
 
 .text-reveal {
   display: block;
+  overflow: hidden;
 }
 
 .text-reveal__mask {
   display: block;
   overflow: hidden;
+  position: relative;
 }
 
 .text-reveal__mask h1,
