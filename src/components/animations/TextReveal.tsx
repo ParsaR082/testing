@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -27,24 +28,25 @@ export function TextReveal({
     if (!root || !element) return;
 
     const ctx = gsap.context(() => {
+      // Initial state
       gsap.set(element, {
         yPercent: 110,
         opacity: 0,
       });
 
-      const animateIn = (fromY: number) => {
+      const animateIn = (from: number) => {
         gsap.killTweensOf(element);
 
         gsap.fromTo(
           element,
           {
-            yPercent: fromY,
+            yPercent: from,
             opacity: 0,
           },
           {
             yPercent: 0,
             opacity: 1,
-            duration: 1.25,
+            duration: 1.15,
             delay,
             ease: "power4.out",
             overwrite: true,
@@ -52,14 +54,14 @@ export function TextReveal({
         );
       };
 
-      const animateOut = (toY: number) => {
+      const animateOut = (to: number) => {
         gsap.killTweensOf(element);
 
         gsap.to(element, {
-          yPercent: toY,
+          yPercent: to,
           opacity: 0,
-          duration: 1,
-          ease: "power4.inOut",
+          duration: 0.85,
+          ease: "power3.inOut",
           overwrite: true,
         });
       };
@@ -67,10 +69,10 @@ export function TextReveal({
       ScrollTrigger.create({
         trigger: root,
 
-        // ورود کمی قبل از رسیدن المان به مرکز صفحه
+        // ورود به viewport
         start: "top 90%",
 
-        // خروج در حالی که هنوز 25٪ از viewport باقی مانده
+        // خروج قبل از اینکه کاملاً از viewport خارج شود
         end: "bottom 25%",
 
         onEnter: () => {
