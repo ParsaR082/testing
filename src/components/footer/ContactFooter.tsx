@@ -1,11 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { TextReveal } from "@/components/animations/TextReveal";
 
 export function ContactFooter() {
+  const pathname = usePathname();
+
   return (
     <section
+      key={pathname}
       dir="rtl"
       className="px-6 py-24 md:px-10 md:py-40"
     >
@@ -16,18 +20,16 @@ export function ContactFooter() {
               <TextReveal>
                 <p className="text-[11px] font-medium tracking-[0.44em] text-muted">
                   شروع یک گفت‌وگو
-                  
                 </p>
               </TextReveal>
             </div>
 
             <div className="md:col-span-8 md:col-start-5">
               <TextReveal>
-                <h2 className="type-display arshia-title max-w-[1000px] text-[clamp(2rem,5vw,8rem)] font-light leading-[0.88] pb-2">
+                <h2 className="type-display arshia-title max-w-[1000px] pb-2 text-[clamp(2rem,5vw,8rem)] font-light leading-[0.88] tracking-[-0.055em]">
                   بیایید مکانی خلق کنیم که ارزش به یاد
                   ماندن داشته باشد.
                 </h2>
-                
               </TextReveal>
 
               <div className="mt-10 flex flex-col gap-7 md:mt-14 md:flex-row md:items-center md:justify-between">
