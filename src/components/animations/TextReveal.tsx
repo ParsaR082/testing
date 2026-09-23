@@ -92,12 +92,8 @@ export function TextReveal({
         });
       };
 
-      /*
-       * Start hidden.
-       *
-       * The element is positioned below its mask until
-       * ScrollTrigger detects that it has entered the viewport.
-       */
+      // Initial state.
+      // ScrollTrigger will animate the element into view.
       gsap.set(element, {
         yPercent: 110,
         opacity: 0,
@@ -114,26 +110,6 @@ export function TextReveal({
 
         onEnterBack: showFromTop,
         onLeaveBack: hideToBottom,
-
-        /*
-         * Important for elements near the bottom of the page.
-         */
-        onRefresh: (self) => {
-          if (self.isActive) {
-            gsap.set(element, {
-              yPercent: 0,
-              opacity: 1,
-            });
-          }
-        },
-      });
-
-      /*
-       * Give ScrollTrigger one frame to calculate the final
-       * layout after the component has mounted.
-       */
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
       });
     }, root);
 

@@ -5,6 +5,7 @@ import { ParallaxImage } from "@/components/animations/ParallaxImage";
 import { TextReveal } from "@/components/animations/TextReveal";
 import { HorizontalGallery } from "@/components/gallery/HorizontalGallery";
 import { PinnedGallery } from "@/components/gallery/PinnedGallery";
+import { ScrollTriggerRefresh } from "@/components/animations/ScrollTriggerRefresh";
 
 export const metadata: Metadata = {
   title: "استودیو",
@@ -287,8 +288,8 @@ export default function StudioPage() {
             },
           ]}
         />
+        <ScrollTriggerRefresh />
       </section>
-
       {/* DARK STATEMENT */}
       <section className="relative overflow-hidden bg-dark px-6 py-28 text-background md:px-10 md:py-48">        <div aria-hidden="true" className="absolute -left-24 top-1/2 h-72 w-72 rounded-full border border-white/10 md:h-96 md:w-96" />
         <div className="mx-auto max-w-[1600px]">
