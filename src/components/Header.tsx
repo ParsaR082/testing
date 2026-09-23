@@ -1,33 +1,46 @@
 "use client";
+
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const links=[
   {href:"/projects",label:"پروژه‌ها"},
-  {href:"/studio",label:"استودیو"},
-  {href:"/journal",label:"مجله"},
-  {href:"/contact",label:"تماس"}
+  {href:"/journal",label:"اخبار"},
+  {href:"/studio",label:"هنرمندان"},
+  {href:"/products",label:"محصولات"},
+  {href:"/ideas",label:"ایده‌ها"}
 ];
 
 export function Header(){
   const [open,setOpen]=useState(false);
   return <>
-    <header className="fixed inset-x-0 top-0 z-50 px-4 py-5 md:px-8 md:py-7">
-      <div className="container flex items-center justify-between">
-        <Link href="/" className="text-sm font-medium tracking-tight" aria-label="صفحه اصلی">استودیو</Link>
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map(link=><Link key={link.href} href={link.href} className="text-xs text-neutral-700 transition-opacity duration-300 hover:opacity-50">{link.label}</Link>)}
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link href="/" className="site-mark" aria-label="صفحه اصلی">
+          <span className="site-mark-symbol" aria-hidden="true">△</span>
+          <span className="site-mark-name">استودیو</span>
+        </Link>
+
+        <nav className="site-nav hidden md:flex" aria-label="ناوبری اصلی">
+          {links.map(link=><Link key={link.href} href={link.href}>{link.label}</Link>)}
         </nav>
-        <button type="button" className="text-xs md:hidden" aria-expanded={open} aria-label={open?"بستن منو":"باز کردن منو"} onClick={()=>setOpen(v=>!v)}>{open?"بستن":"منو"}</button>
-        <span className="hidden text-xs text-neutral-500 md:block">جستجو</span>
+
+        <button type="button" className="site-search hidden md:flex" aria-label="جستجو">
+          <span>جستجو</span><span aria-hidden="true">⌕</span>
+        </button>
+
+        <button type="button" className="site-mobile-menu md:hidden" aria-expanded={open} aria-label={open?"بستن منو":"باز کردن منو"} onClick={()=>setOpen(v=>!v)}>
+          {open?"بستن":"منو"}
+        </button>
       </div>
     </header>
+
     <AnimatePresence>
-      {open&&<motion.div className="fixed inset-0 z-40 flex items-end bg-[#111111] px-6 pb-10 text-[#f5f4f0]" initial={{clipPath:"inset(0 0 100% 0)"}} animate={{clipPath:"inset(0 0 0% 0)"}} exit={{clipPath:"inset(100% 0 0 0)"}} transition={{duration:.8,ease:[.76,0,.24,1]}}>
-        <nav className="flex w-full flex-col gap-3">
-          {links.map((link,index)=><motion.div key={link.href} initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{delay:index*.07,duration:.7}}>
-            <Link href={link.href} onClick={()=>setOpen(false)} className="block text-[clamp(2.8rem,12vw,6rem)] font-light leading-none tracking-[-0.05em]">{link.label}</Link>
+      {open&&<motion.div className="mobile-menu" initial={{clipPath:"inset(0 0 100% 0)"}} animate={{clipPath:"inset(0 0 0% 0)"}} exit={{clipPath:"inset(100% 0 0 0)"}} transition={{duration:.72,ease:[.76,0,.24,1]}}>
+        <nav>
+          {links.map((link,index)=><motion.div key={link.href} initial={{opacity:0,y:26}} animate={{opacity:1,y:0}} transition={{delay:index*.055,duration:.6}}>
+            <Link href={link.href} onClick={()=>setOpen(false)}>{link.label}</Link>
           </motion.div>)}
         </nav>
       </motion.div>}

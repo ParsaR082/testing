@@ -7,34 +7,81 @@ import { RevealPage } from "@/components/RevealPage";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { projects } from "@/data/projects";
 
-export default function Home(){
-  const featured=projects[0];
-  return <main className="site-shell">
-    <SmoothScroll/><RevealPage/><Header/>
-    <section className="relative min-h-[100svh] px-4 pb-20 pt-32 md:px-8 md:pt-40">
-      <div className="container grid min-h-[calc(100svh-10rem)] items-end gap-12 md:grid-cols-[.8fr_1.2fr]">
-        <div className="order-2 pb-6 md:order-1 md:pb-12">
-          <p data-hero-item className="eyebrow">استودیو معماری معاصر · ۱۴۰۵</p>
-          <h1 data-hero-item className="display mt-6 max-w-4xl">معماری برای<br/>زندگی آرام.</h1>
-          <p data-hero-item className="body-copy mt-8 max-w-lg">فضاهایی که از نور، ماده و سکوت شکل می‌گیرند؛ پروژه‌هایی میان معماری معاصر و تجربه روزمره.</p>
-          <div data-hero-item className="mt-8"><EditorialLink href={"/projects/"+featured.slug}>مشاهده پروژه منتخب</EditorialLink></div>
+const heroImage =
+  "https://images.unsplash.com/photo-1759387459957-a365ee2b7eef?auto=format&fit=crop&w=1800&q=84";
+
+export default function Home() {
+  const featured = projects[0];
+
+  return (
+    <main className="site-shell">
+      <SmoothScroll />
+      <RevealPage />
+      <Header />
+
+      <section className="reference-hero">
+        <div className="reference-hero-copy" data-reveal>
+          <p className="eyebrow reference-kicker">استودیو معماری معاصر</p>
+          <h1 className="reference-title">بلندپرواز</h1>
+          <p className="reference-description">
+            بازخوانی معماری معاصر؛ جایی که برنامه، ماده و نور به تجربه‌ای دقیق از فضا تبدیل می‌شوند.
+          </p>
+          <EditorialLink href={"/projects/" + featured.slug}>کاوش پروژه</EditorialLink>
         </div>
-        <div data-hero-image className="image-frame order-1 aspect-[4/3] md:order-2 md:aspect-[5/4]">
-          <Image src={featured.image} alt={featured.title} fill priority sizes="(max-width:767px) 100vw,58vw" className="object-cover"/>
+
+        <div className="reference-hero-art" data-image-reveal aria-hidden="true">
+          <Image
+            src={heroImage}
+            alt=""
+            fill
+            priority
+            sizes="70vw"
+            className="object-cover"
+          />
         </div>
-      </div>
-    </section>
-    <section className="px-4 py-32 md:px-8 md:py-48"><div className="container"><div className="grid gap-16 md:grid-cols-[.7fr_1.3fr] md:gap-24">
-      <div data-reveal><p className="eyebrow">پروژه منتخب</p><p className="mt-5 text-sm leading-8 text-neutral-600">هر پروژه تلاشی است برای ساختن رابطه‌ای دقیق میان انسان، مکان و زمان.</p></div>
-      <div data-reveal><div className="grid gap-10 md:grid-cols-[.8fr_1.2fr] md:items-end">
-        <div><p className="eyebrow">{featured.category} · {featured.location} · {featured.year}</p><h2 className="display-tight mt-5">{featured.title}</h2><p className="body-copy mt-8">{featured.description}</p><div className="mt-8"><EditorialLink href={"/projects/"+featured.slug}>ورود به پروژه</EditorialLink></div></div>
-        <div className="image-frame aspect-[4/5]"><Image src={featured.image} alt={featured.title} fill sizes="(max-width:767px) 100vw,45vw" className="object-cover" data-parallax/></div>
-      </div></div>
-    </div></div></section>
-    <section className="px-4 pb-32 md:px-8 md:pb-48"><div className="container">
-      <div className="mb-16 flex items-end justify-between gap-8 md:mb-24"><div data-reveal><p className="eyebrow">منتخب پروژه‌ها</p><h2 className="display-tight mt-4">معماری و مکان</h2></div><div data-reveal className="hidden md:block"><EditorialLink href="/projects">همه پروژه‌ها</EditorialLink></div></div>
-      <div className="grid gap-x-8 gap-y-20 md:grid-cols-2 xl:grid-cols-3">{projects.map(project=><div key={project.slug} data-reveal><ProjectCard project={project}/></div>)}</div>
-    </div></section>
-    <Footer/>
-  </main>;
+
+        <div className="reference-socials" aria-label="شبکه‌های اجتماعی">
+          <span>ی</span>
+          <span>ت</span>
+          <span>ف</span>
+        </div>
+      </section>
+
+      <section className="reference-intro px-6 py-20 md:px-12 md:py-28">
+        <div className="grid gap-12 md:grid-cols-[.7fr_1.3fr] md:items-start">
+          <div data-reveal>
+            <p className="eyebrow">استودیو</p>
+            <p className="mt-5 max-w-xs text-xs leading-7 text-neutral-500">
+              معماری، مکان و تجربه؛ با تمرکز بر جزئیات و سکوت بصری.
+            </p>
+          </div>
+          <p
+            data-reveal
+            className="max-w-4xl text-xl font-light leading-[1.8] tracking-[-.025em] md:text-3xl"
+          >
+            هر پروژه برای ما یک روایت مستقل است؛ روایتی که از مکان شروع می‌شود و با نور، ماده و حرکت کامل می‌شود.
+          </p>
+        </div>
+      </section>
+
+      <section className="px-6 pb-24 md:px-12 md:pb-32">
+        <div className="mb-12 flex items-end justify-between border-b border-black/10 pb-5">
+          <div>
+            <p className="eyebrow">پروژه‌ها</p>
+            <h2 className="mt-3 text-3xl font-light tracking-[-.04em] md:text-5xl">منتخب</h2>
+          </div>
+          <EditorialLink href="/projects">همه</EditorialLink>
+        </div>
+        <div className="grid gap-10 md:grid-cols-2">
+          {projects.slice(0, 2).map((project) => (
+            <div key={project.slug} data-reveal>
+              <ProjectCard project={project} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
 }

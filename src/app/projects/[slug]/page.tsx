@@ -3,22 +3,60 @@ import { notFound } from "next/navigation";
 import { EditorialLink } from "@/components/EditorialLink";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { RevealPage } from "@/components/RevealPage";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { projects } from "@/data/projects";
 
-export function generateStaticParams(){return projects.map(project=>({slug:project.slug}));}
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const project=projects.find(item=>item.slug===slug);return{title:project?project.title+" | استودیو معماری":"پروژه | استودیو معماری"};}
+export function generateStaticParams(){return projects.map((project)=>({slug:project.slug}));}
+
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){
+  const {slug}=await params;
+  const project=projects.find((item)=>item.slug===slug);
+  return {title:project?project.title+" | استودیو معماری":"پروژه | استودیو معماری"};
+}
 
 export default async function ProjectPage({params}:{params:Promise<{slug:string}>}){
-  const {slug}=await params;const project=projects.find(item=>item.slug===slug);if(!project)notFound();
-  return <main className="site-shell"><SmoothScroll/><Header/>
-    <section className="px-4 pb-24 pt-40 md:px-8 md:pb-40 md:pt-52"><div className="container">
-      <div className="grid gap-16 md:grid-cols-[.65fr_1.35fr] md:items-end"><div><p className="eyebrow">{project.category} · {project.location} · {project.year}</p><h1 className="display-tight mt-6">{project.title}</h1></div><p className="body-copy max-w-xl md:justify-self-end">{project.description}</p></div>
-      <div className="image-frame mt-20 aspect-[16/10] md:mt-32"><Image src={project.image} alt={project.title} fill priority sizes="(max-width:767px) 100vw,90vw" className="object-cover"/></div>
-    </div></section>
-    <section className="px-4 py-20 md:px-8 md:py-32"><div className="container grid gap-16 md:grid-cols-[.7fr_1.3fr]"><div><p className="eyebrow">درباره پروژه</p></div><div><p className="max-w-3xl text-xl font-light leading-[1.8] tracking-[-.02em] md:text-3xl">این پروژه بر پایه رابطه میان نور طبیعی، ماده و حرکت شکل گرفته است. فضاها به جای تعریف یک مسیر ثابت، امکان کشف تدریجی معماری را فراهم می‌کنند.</p></div></div></section>
-    <section className="px-4 pb-32 md:px-8 md:pb-48"><div className="container grid gap-8 md:grid-cols-2"><div className="image-frame aspect-[4/5]"><Image src={project.image} alt="" fill sizes="50vw" className="object-cover"/></div><div className="image-frame aspect-[4/5] md:mt-32"><Image src={project.image} alt="" fill sizes="50vw" className="object-cover"/></div></div></section>
-    <section className="px-4 pb-32 md:px-8 md:pb-48"><div className="container flex items-center justify-between gap-8 border-t border-black/10 pt-8"><span className="eyebrow">پروژه بعدی</span><EditorialLink href="/projects">بازگشت به پروژه‌ها</EditorialLink></div></section>
+  const {slug}=await params;
+  const project=projects.find((item)=>item.slug===slug);
+  if(!project)notFound();
+
+  const index=projects.findIndex((item)=>item.slug===project.slug);
+  const next=projects[(index+1)%projects.length];
+
+  return <main className="site-shell">
+    <SmoothScroll/><RevealPage/><Header/>
+
+    <section className="reference-detail-hero">
+      <div className="reference-detail-copy">
+        <div data-reveal className="reference-author"><span>◉</span><span>استودیو معماری · {project.location}</span></div>
+        <p data-reveal className="eyebrow mt-10">{project.category} · {project.year}</p>
+        <h1 data-reveal className="reference-detail-title">{project.title}</h1>
+        <p data-reveal className="reference-detail-description">{project.description} این پروژه با تمرکز بر رابطه میان نور، ماده و حرکت شکل گرفته و تلاش می‌کند تجربه‌ای آرام و پیوسته از فضا بسازد.</p>
+        <div data-reveal className="mt-7"><EditorialLink href="/projects">بازگشت به پروژه‌ها</EditorialLink></div>
+      </div>
+      <div data-transition-hero data-image-reveal className="reference-detail-image">
+        <Image src={project.image} alt={project.title} fill priority sizes="(max-width:767px) 100vw,52vw" className="object-cover"/>
+      </div>
+    </section>
+
+    <section className="reference-detail-body">
+      <div data-reveal><p className="eyebrow">روایت پروژه</p></div>
+      <p data-reveal>هر تصمیم از شرایط واقعی مکان آغاز شده است؛ نور روز، جهت دید، جنس سطح و حرکت انسان در فضا. نتیجه، مجموعه‌ای از فضاهای به‌هم‌پیوسته است که به جای نمایش خود، اجازه می‌دهند زندگی و زمان در آن‌ها دیده شود.</p>
+    </section>
+
+    <section className="reference-detail-gallery">
+      <div data-image-reveal className="reference-detail-gallery-wide"><Image src={project.image} alt="" fill sizes="90vw" className="object-cover"/></div>
+      <div className="reference-detail-gallery-small">
+        <div data-image-reveal><Image src={project.image} alt="" fill sizes="42vw" className="object-cover"/></div>
+        <div data-image-reveal><Image src={project.image} alt="" fill sizes="42vw" className="object-cover"/></div>
+      </div>
+    </section>
+
+    <section className="reference-next">
+      <div><p className="eyebrow">پروژه بعدی</p><h2>{next.title}</h2></div>
+      <EditorialLink href={"/projects/"+next.slug}>ورود به پروژه</EditorialLink>
+    </section>
+
     <Footer/>
   </main>;
 }
