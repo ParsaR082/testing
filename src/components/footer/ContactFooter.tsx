@@ -15,8 +15,8 @@ export function ContactFooter() {
     >
       <div className="mx-auto max-w-[1600px]">
         <div className="border-t border-black/10 pt-7">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
-            <div className="md:col-span-3">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-6">
+            <div className="md:col-span-2">
               <TextReveal>
                 <p className="text-[11px] font-medium tracking-[0.44em] text-muted">
                   شروع یک گفت‌وگو
@@ -24,7 +24,7 @@ export function ContactFooter() {
               </TextReveal>
             </div>
 
-            <div className="md:col-span-8 md:col-start-5">
+            <div className="md:col-span-8 md:col-start-4">
               <TextReveal>
                 <h2 className="type-display arshia-title max-w-[1000px] pb-2 text-[clamp(2rem,5vw,8rem)] font-light leading-[0.88] tracking-[-0.055em]">
                   بیایید مکانی خلق کنیم که ارزش به یاد
@@ -32,27 +32,40 @@ export function ContactFooter() {
                 </h2>
               </TextReveal>
 
-              <div className="mt-10 flex flex-col gap-7 md:mt-14 md:flex-row md:items-center md:justify-between">
-                <a
-                  href="mailto:studio@urumsima.com"
-                  dir="ltr"
-                  className="group inline-flex w-fit items-center gap-4 text-[11px] font-medium tracking-[0.04em]"
-                >
-                  <span className="border-b border-black/20 pb-1 transition-colors duration-500 group-hover:border-black">
-                    studio@urumsima.com
-                  </span>
+              <div className="mt-8 flex flex-col gap-7 md:mt-10 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-7">
+                  <a
+                    href="mailto:studio@urumsima.com"
+                    dir="ltr"
+                    className="group inline-flex w-fit items-center gap-4 text-[11px] font-medium tracking-[0.04em]"
+                  >
+                    <span className="border-b border-black/20 pb-1 transition-colors duration-500 group-hover:border-black">
+                      studio@urumsima.com
+                    </span>
 
-                  <span className="transition-transform duration-500 group-hover:-translate-x-2">
-                    ←
-                  </span>
-                </a>
+                    <span className="transition-transform duration-500 group-hover:-translate-x-2">
+                      ←
+                    </span>
+                  </a>
+
+                  <a
+                    href="tel:09123456789"
+                    dir="ltr"
+                    className="inline-flex w-fit border-b border-black/20 pb-1 text-[11px] font-medium tracking-[0.04em] transition-colors duration-500 hover:border-black"
+                  >
+                    09123456789
+                  </a>
+                </div>
 
                 <Link
                   href="/projects"
                   dir="rtl"
-                  className="text-[10px] font-medium tracking-[0.04em] text-muted transition-colors duration-300 hover:text-foreground"
+                  className="group inline-flex w-fit items-center gap-3 text-[10px] font-medium tracking-[0.04em] text-muted transition-colors duration-300 hover:text-foreground"
                 >
-                  مشاهده پروژه‌های ما
+                  <span>مشاهده پروژه‌های ما</span>
+                  <span className="transition-transform duration-500 group-hover:-translate-x-1">
+                    ←
+                  </span>
                 </Link>
               </div>
             </div>
