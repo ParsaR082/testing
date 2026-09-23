@@ -46,8 +46,8 @@ export function ProjectsGrid({ projects }: { projects: Project[] }) {
       <div ref={grid} className="grid gap-x-8 gap-y-24 md:grid-cols-2 xl:grid-cols-3">
         {items.map((project) => (
           <article key={project.slug} data-project-card className="group">
-            <Link href={"/projects/" + project.slug} className="block">
-              <div className="image-frame aspect-[4/5] overflow-hidden">
+            <Link href={"/projects/" + project.slug} data-project-transition className="block">
+              <div className="image-frame aspect-[4/5] overflow-hidden" data-project-image data-image-src={project.image}>
                 <Image src={project.image} alt={project.title} fill sizes="(max-width:767px) 100vw,(max-width:1199px) 50vw,33vw" className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.035]" />
               </div>
               <div className="mt-5 grid grid-cols-[1fr_auto] gap-5">
