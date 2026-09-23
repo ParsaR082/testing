@@ -2,7 +2,6 @@ import Image from "next/image";
 import { EditorialLink } from "@/components/EditorialLink";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { LoadingScreen } from "@/components/LoadingScreen";
 import { ProjectCard } from "@/components/ProjectCard";
 import { RevealPage } from "@/components/RevealPage";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -13,67 +12,41 @@ export default function Home() {
 
   return (
     <main className="site-shell">
-      <LoadingScreen />
       <SmoothScroll />
       <RevealPage />
       <Header />
 
-      <section className="hero-section relative min-h-[150svh] px-4 pt-28 md:px-8 md:pt-32">
-        <div data-hero-stage className="container sticky top-0 flex min-h-[100svh] items-center">
-          <div className="relative mx-auto w-full max-w-[1440px]">
-            <div data-hero-image className="hero-image image-frame relative mx-auto aspect-[4/5] w-[min(72vw,540px)] overflow-hidden md:aspect-[5/6] md:w-[min(39vw,620px)]">
-              <Image src={featured.image} alt={featured.title} fill priority sizes="(max-width:767px) 72vw, 39vw" className="object-cover" data-hero-parallax />
-            </div>
+      <section className="reference-hero">
+        <div className="reference-hero-copy" data-reveal>
+          <p className="eyebrow reference-kicker">استودیو معماری معاصر</p>
+          <h1 className="reference-title">بلندپرواز</h1>
+          <p className="reference-description">بازخوانی معماری معاصر؛ جایی که برنامه، ماده و نور به تجربه‌ای دقیق از فضا تبدیل می‌شوند.</p>
+          <EditorialLink href={"/projects/" + featured.slug}>کاوش پروژه</EditorialLink>
+        </div>
 
-            <div className="pointer-events-none absolute inset-0 flex items-end justify-center pb-[8vh] md:pb-[10vh]">
-              <div className="w-full text-center">
-                <p data-hero-meta className="hero-meta eyebrow mb-5 opacity-0">استودیو معماری معاصر · ارومیه · ۱۴۰۵</p>
-                <div className="overflow-hidden">
-                  <h1 data-hero-title className="hero-title display opacity-0">فضای آرام</h1>
-                </div>
-                <p data-hero-copy className="mx-auto mt-5 max-w-md text-sm leading-8 text-neutral-600 opacity-0 md:text-base">معماری به‌مثابه مکث؛ ترکیبی از نور، ماده و نسبت که تجربه‌ای آرام و ماندگار می‌سازد.</p>
-                <div data-hero-link className="pointer-events-auto mt-7 opacity-0">
-                  <EditorialLink href={"/projects/" + featured.slug}>ورود به پروژه</EditorialLink>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="reference-hero-art" data-image-reveal aria-hidden="true">
+          <Image src="/images/reference-hero.svg" alt="" fill priority sizes="70vw" className="object-cover" />
+        </div>
+
+        <div className="reference-socials" aria-label="شبکه‌های اجتماعی">
+          <span>ی</span><span>ت</span><span>ف</span>
         </div>
       </section>
 
-      <section className="px-4 py-28 md:px-8 md:py-48">
-        <div className="container">
-          <div className="grid gap-16 md:grid-cols-[0.55fr_1.45fr] md:gap-24">
-            <div data-reveal className="md:pt-6">
-              <p className="eyebrow">پروژه منتخب</p>
-              <p className="mt-6 max-w-xs text-sm leading-8 text-neutral-600">هر پروژه از یک پرسش ساده آغاز می‌شود: چگونه می‌توان میان انسان، مکان، نور و زمان تعادلی دقیق ساخت؟</p>
-            </div>
-            <div data-reveal>
-              <div className="grid gap-10 md:grid-cols-[0.72fr_1.28fr] md:items-end">
-                <div className="max-w-xl">
-                  <p className="eyebrow">{featured.category} · {featured.location} · {featured.year}</p>
-                  <h2 className="display-tight mt-5">{featured.title}</h2>
-                  <p className="body-copy mt-8">{featured.description}</p>
-                  <div className="mt-9"><EditorialLink href={"/projects/" + featured.slug}>مشاهده پروژه</EditorialLink></div>
-                </div>
-                <div data-image-reveal className="image-frame aspect-[4/5]">
-                  <Image src={featured.image} alt={featured.title} fill sizes="(max-width:767px) 100vw, 45vw" className="object-cover" data-parallax />
-                </div>
-              </div>
-            </div>
-          </div>
+      <section className="reference-intro px-6 py-20 md:px-12 md:py-28">
+        <div className="grid gap-12 md:grid-cols-[.7fr_1.3fr] md:items-start">
+          <div data-reveal><p className="eyebrow">استودیو</p><p className="mt-5 max-w-xs text-xs leading-7 text-neutral-500">معماری، مکان و تجربه؛ با تمرکز بر جزئیات و سکوت بصری.</p></div>
+          <p data-reveal className="max-w-4xl text-xl font-light leading-[1.8] tracking-[-.025em] md:text-3xl">هر پروژه برای ما یک روایت مستقل است؛ روایتی که از مکان شروع می‌شود و با نور، ماده و حرکت کامل می‌شود.</p>
         </div>
       </section>
 
-      <section className="px-4 pb-32 md:px-8 md:pb-48">
-        <div className="container">
-          <div className="mb-16 grid gap-8 md:mb-24 md:grid-cols-[1fr_auto] md:items-end">
-            <div data-reveal><p className="eyebrow">آرشیو پروژه‌ها</p><h2 className="display-tight mt-4">معماری و مکان</h2></div>
-            <div data-reveal><EditorialLink href="/projects">همه پروژه‌ها</EditorialLink></div>
-          </div>
-          <div className="grid gap-x-8 gap-y-20 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project) => <div key={project.slug} data-reveal><ProjectCard project={project} /></div>)}
-          </div>
+      <section className="px-6 pb-24 md:px-12 md:pb-32">
+        <div className="mb-12 flex items-end justify-between border-b border-black/10 pb-5">
+          <div><p className="eyebrow">پروژه‌ها</p><h2 className="mt-3 text-3xl font-light tracking-[-.04em] md:text-5xl">منتخب</h2></div>
+          <EditorialLink href="/projects">همه</EditorialLink>
+        </div>
+        <div className="grid gap-10 md:grid-cols-2">
+          {projects.slice(0,2).map((project)=><div key={project.slug} data-reveal><ProjectCard project={project}/></div>)}
         </div>
       </section>
 
