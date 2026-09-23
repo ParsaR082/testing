@@ -114,3 +114,31 @@ html.page-transitioning,body.page-transitioning{overflow:hidden}
 .reference-card:hover .reference-read i{transform:translateX(-3px)}
 @media(max-width:900px){.reference-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:767px){.reference-grid{grid-template-columns:1fr;gap:38px}.reference-filters{gap:17px}.reference-card-meta,.reference-read{font-size:7px}.reference-card h2{font-size:16px}}
+
+.reference-detail-hero{display:grid;grid-template-columns:.82fr 1.18fr;gap:9%;align-items:center;min-height:calc(66vh - 72px);padding:9% 10%}
+.reference-detail-copy{direction:rtl}
+.reference-author{display:flex;align-items:center;gap:8px;font-size:7px;color:#777}
+.reference-author span:first-child{display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#ddd;color:#777;font-size:7px}
+.reference-detail-title{margin-top:14px;font-size:clamp(2.6rem,5vw,5.2rem);font-weight:400;line-height:.95;letter-spacing:-.055em}
+.reference-detail-description{max-width:330px;margin-top:17px;font-size:8px;line-height:2;color:#777}
+.reference-detail-copy .editorial-link{font-size:7px}
+.reference-detail-image{position:relative;aspect-ratio:1.35;overflow:hidden;background:#ddd}
+.reference-detail-body{display:grid;grid-template-columns:.75fr 1.25fr;gap:10%;padding:11% 10%;border-top:1px solid rgba(17,17,17,.06)}
+.reference-detail-body>p{max-width:620px;font-size:15px;line-height:2.05;font-weight:300}
+.reference-detail-gallery{padding:0 10% 11%;display:flex;flex-direction:column;gap:28px}
+.reference-detail-gallery-wide{position:relative;aspect-ratio:1.8;overflow:hidden}
+.reference-detail-gallery-small{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.reference-detail-gallery-small>div{position:relative;aspect-ratio:1.25;overflow:hidden}
+.reference-next{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:8% 10%;border-top:1px solid rgba(17,17,17,.06)}
+.reference-next h2{margin-top:7px;font-size:clamp(2rem,4vw,4rem);font-weight:300;letter-spacing:-.05em}
+.reference-next .editorial-link{font-size:7px}
+@media(max-width:767px){
+.reference-detail-hero{grid-template-columns:1fr;gap:30px;padding:12% 8% 14%;min-height:auto}
+.reference-detail-image{order:-1;aspect-ratio:1.2}
+.reference-detail-title{font-size:clamp(2.8rem,15vw,5rem)}
+.reference-detail-body{grid-template-columns:1fr;gap:24px;padding:16% 8%}
+.reference-detail-body>p{font-size:16px}
+.reference-detail-gallery{padding:0 8% 16%;gap:18px}
+.reference-detail-gallery-small{gap:18px}
+.reference-next{padding:14% 8%;align-items:flex-start;flex-direction:column}
+}
