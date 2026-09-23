@@ -10,7 +10,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 .site-shell{
   position:relative;
   width:min(calc(100vw - 90px),1320px);
-  min-height:calc(100vh - 180px);
+  min-height:66vh;
   margin:90px auto;
   overflow:clip;
   background:#fff;
@@ -75,4 +75,24 @@ html.page-transitioning,body.page-transitioning{overflow:hidden}
   .site-header-inner{padding:0 17px;grid-template-columns:1fr auto}
   .site-mark-name{display:none}
   .site-shell .container{width:min(100% - 32px,1160px)}
+}
+
+.reference-hero{position:relative;min-height:calc(66vh - 72px);overflow:hidden;padding:12% 10% 10%;display:flex;align-items:center}
+.reference-hero-copy{position:relative;z-index:2;width:min(48%,430px);direction:rtl}
+.reference-kicker{margin-bottom:22px;font-size:7px}
+.reference-title{font-size:clamp(3.7rem,8vw,7.4rem);font-weight:300;line-height:.86;letter-spacing:-.07em;margin:0 0 20px}
+.reference-description{max-width:340px;font-size:9px;line-height:2;color:#7a7a76;margin-bottom:24px}
+.reference-hero-copy .editorial-link{font-size:7px;gap:10px}
+.reference-hero-copy .editorial-arrow{width:28px;height:28px;font-size:11px}
+.reference-hero-art{position:absolute;right:-2%;bottom:-14%;width:67%;height:82%;overflow:hidden;transform:rotate(-1deg)}
+.reference-hero-art img{object-position:center}
+.reference-socials{position:absolute;left:5%;bottom:7%;z-index:3;display:flex;flex-direction:column;gap:12px;font-size:7px}
+.reference-intro{border-top:1px solid rgba(17,17,17,.06)}
+@media(max-width:767px){
+.reference-hero{min-height:calc(66vh - 58px);padding:14% 8% 12%;align-items:flex-start}
+.reference-hero-copy{width:85%;padding-top:12%}
+.reference-title{font-size:clamp(3.4rem,18vw,6rem)}
+.reference-description{font-size:9px;max-width:250px}
+.reference-hero-art{right:-25%;bottom:-2%;width:95%;height:55%;opacity:.92}
+.reference-socials{left:6%;bottom:5%;font-size:7px}
 }
