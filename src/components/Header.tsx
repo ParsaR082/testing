@@ -8,7 +8,8 @@ const links=[
   {href:"/projects",label:"پروژه‌ها"},
   {href:"/journal",label:"اخبار"},
   {href:"/studio",label:"هنرمندان"},
-  {href:"/contact",label:"تماس"}
+  {href:"/products",label:"محصولات"},
+  {href:"/ideas",label:"ایده‌ها"}
 ];
 
 export function Header(){
