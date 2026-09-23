@@ -20,12 +20,8 @@ const vazirmatn = localFont({
 });
 
 const alexandria = localFont({
-  src: "../fonts/alexandria-arabic-wght-normal.woff2",
-  weight: "100 900",
-  style: "normal",
-  variable: "--font-heading-arabic",
-  display: "swap",
-});
+  src: "../fonts/alexandria-arabic-wght-normal.woff2",  weight: "100 900",  style: "normal",  variable: "--font-heading-arabic",  display: "swap",}
+);
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -52,6 +48,12 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, view
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fa" dir="rtl">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://api.bfont.ir/jadid.min.css"
+        />
+      </head>
       <body className={`${vazirmatn.variable} ${alexandria.variable} bg-background text-foreground antialiased`}>
         <SmoothScroll>
           <OpeningSequence />

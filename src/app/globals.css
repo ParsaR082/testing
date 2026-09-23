@@ -53,7 +53,7 @@ body {
   direction: rtl;
 
   font-family:
-    var(--font-body),
+    var(--font-vazirmatn),
     "Helvetica Neue",
     Helvetica,
     Arial,
@@ -139,6 +139,10 @@ img {
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
+
+/* .type-display.jadid-title {
+  font-family: "B Jadid", sans-serif;
+} */
 
 .type-heading {
   font-family:
