@@ -21,7 +21,7 @@ export function StudioStatement() {
 
           <div className="md:col-span-8 md:col-start-5">
             <TextReveal>
-              <p className="text-[clamp(2.5rem,5.5vw,6.5rem)] font-light leading-[0.94] tracking-[-0.06em]">
+              <p className="type-display arshia-title text-[clamp(2.5rem,5.5vw,6.5rem)] font-light leading-[0.94] tracking-[-0.06em]">
                 ما باور داریم معماری تنها چیزی نیست که
                 می‌بینید.
                 <br />

@@ -23,7 +23,7 @@ export function ContactFooter() {
 
             <div className="md:col-span-8 md:col-start-5">
               <TextReveal>
-                <h2 className="max-w-[1000px] text-[clamp(2rem,5vw,8rem)] font-light leading-[0.88] pb-2">
+                <h2 className="type-display arshia-title max-w-[1000px] text-[clamp(2rem,5vw,8rem)] font-light leading-[0.88] pb-2">
                   بیایید مکانی خلق کنیم که ارزش به یاد
                   ماندن داشته باشد.
                 </h2>

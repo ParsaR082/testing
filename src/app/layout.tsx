@@ -51,8 +51,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link
           rel="stylesheet"
-          href="https://api.bfont.ir/jadid.min.css"
+          href="//api.bfont.ir/arshia.min.css"
         />
+        <link rel="stylesheet" href="//api.bfont.ir/bardiya.min.css"/>
       </head>
       <body className={`${vazirmatn.variable} ${alexandria.variable} bg-background text-foreground antialiased`}>
         <SmoothScroll>

@@ -20,7 +20,7 @@ export function HomeIntro() {
 
           <div className="md:col-span-8 md:col-start-5">
             <TextReveal>
-              <h2 className="max-w-[1100px] text-[clamp(2.8rem,6vw,7rem)] font-light leading-[0.94] tracking-[-0.06em]">
+              <h2 className="type-display arshia-title max-w-[1100px] text-[clamp(2.8rem,6vw,7rem)] font-light leading-[0.94] tracking-[-0.06em]">
                 معماری که تجربه انسانی را شکل می‌دهد.
               </h2>
             </TextReveal>

@@ -139,10 +139,16 @@ img {
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
+.arshia {
+font-family: "B Arshia", var(--font-vazirmatn),sans-serif;
+}
 
-/* .type-display.jadid-title {
-  font-family: "B Jadid", sans-serif;
-} */
+.bardi {
+  font-family:"B Bardiya", var(--font-vazirmatn),sans-serif;
+}
+.type-display.arshia-title {
+  font-family: "B Arshia", var(--font-vazirmatn),sans-serif;
+}
 
 .type-heading {
   font-family:
@@ -233,13 +239,11 @@ img {
 ───────────────────────────────────────── */
 
 .text-reveal {
-  display: block;
+  margin-block: 0;
 }
 
 .text-reveal__mask {
-  display: block;
-  overflow: hidden;
-  position: relative;
+  clip-path: inset(-0.35em 0 -0.35em 0);
 }
 
 .text-reveal__mask h1,

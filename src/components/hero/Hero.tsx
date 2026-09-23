@@ -254,7 +254,7 @@ export function Hero() {
             <div className="hero-text-mask mt-5 md:mt-7">
               <h1
                 dir="rtl"
-                className="type-display jadid-title max-w-[1150px] text-[clamp(3.25rem,11vw,10rem)] font-light leading-[0.9] tracking-[-0.045em] md:leading-[0.86] md:tracking-[-0.055em]"
+                className="type-display arshia-title max-w-[1150px] text-[clamp(3.25rem,11vw,10rem)] font-light leading-[0.9] tracking-[-0.045em] md:leading-[0.86] md:tracking-[-0.055em]"
               >
                 معماری که
                 <br />

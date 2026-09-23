@@ -22,7 +22,7 @@ export function ContactCTA() {
 
             <div className="md:col-span-8 md:col-start-5">
               <TextReveal>
-                <h2 className="max-w-[1000px] text-[clamp(3rem,7vw,8rem)] font-light leading-[0.88] tracking-[-0.065em]">
+                <h2 className="type-display arshia-title max-w-[1000px] text-[clamp(3rem,7vw,8rem)] font-light leading-[0.88] tracking-[-0.065em]">
                   بیایید مکانی خلق کنیم که ارزش به یاد
                   ماندن داشته باشد.
                 </h2>

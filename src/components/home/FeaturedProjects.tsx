@@ -25,7 +25,7 @@ export function FeaturedProjects() {
                 پروژه‌های منتخب
               </p>
 
-              <h2 className="mt-4 text-[clamp(2rem,4vw,4rem)] font-light tracking-[-0.045em]">
+              <h2 className="type-display arshia-title mt-4 text-[clamp(2rem,4vw,4rem)] font-light tracking-[-0.045em]">
                 پروژه‌های منتخب
               </h2>
             </div>

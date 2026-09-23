@@ -1,7 +1,6 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -28,88 +27,67 @@ export function TextReveal({
     if (!root || !element) return;
 
     const ctx = gsap.context(() => {
-      const showFromBottom = () => {
-        gsap.killTweensOf(element);
-
-        gsap.fromTo(
-          element,
-          {
-            yPercent: 110,
-            opacity: 0,
-          },
-          {
-            yPercent: 0,
-            opacity: 1,
-            duration: 1.2,
-            delay,
-            ease: "power4.out",
-            overwrite: true,
-          },
-        );
-      };
-
-      const showFromTop = () => {
-        gsap.killTweensOf(element);
-
-        gsap.fromTo(
-          element,
-          {
-            yPercent: -110,
-            opacity: 0,
-          },
-          {
-            yPercent: 0,
-            opacity: 1,
-            duration: 1.2,
-            delay,
-            ease: "power4.out",
-            overwrite: true,
-          },
-        );
-      };
-
-      const hideToTop = () => {
-        gsap.killTweensOf(element);
-
-        gsap.to(element, {
-          yPercent: -110,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.inOut",
-          overwrite: true,
-        });
-      };
-
-      const hideToBottom = () => {
-        gsap.killTweensOf(element);
-
-        gsap.to(element, {
-          yPercent: 110,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.inOut",
-          overwrite: true,
-        });
-      };
-
-      // Initial state.
-      // ScrollTrigger will animate the element into view.
       gsap.set(element, {
         yPercent: 110,
         opacity: 0,
       });
 
+      const animateIn = (fromY: number) => {
+        gsap.killTweensOf(element);
+
+        gsap.fromTo(
+          element,
+          {
+            yPercent: fromY,
+            opacity: 0,
+          },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 1.25,
+            delay,
+            ease: "power4.out",
+            overwrite: true,
+          },
+        );
+      };
+
+      const animateOut = (toY: number) => {
+        gsap.killTweensOf(element);
+
+        gsap.to(element, {
+          yPercent: toY,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.inOut",
+          overwrite: true,
+        });
+      };
+
       ScrollTrigger.create({
         trigger: root,
 
-        start: "top 92%",
-        end: "bottom 20%",
+        // ورود کمی قبل از رسیدن المان به مرکز صفحه
+        start: "top 90%",
 
-        onEnter: showFromBottom,
-        onLeave: hideToTop,
+        // خروج در حالی که هنوز 25٪ از viewport باقی مانده
+        end: "bottom 25%",
 
-        onEnterBack: showFromTop,
-        onLeaveBack: hideToBottom,
+        onEnter: () => {
+          animateIn(110);
+        },
+
+        onLeave: () => {
+          animateOut(-110);
+        },
+
+        onEnterBack: () => {
+          animateIn(-110);
+        },
+
+        onLeaveBack: () => {
+          animateOut(110);
+        },
       });
     }, root);
 

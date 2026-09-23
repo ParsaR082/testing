@@ -5,7 +5,6 @@ import { ParallaxImage } from "@/components/animations/ParallaxImage";
 import { TextReveal } from "@/components/animations/TextReveal";
 import { HorizontalGallery } from "@/components/gallery/HorizontalGallery";
 import { PinnedGallery } from "@/components/gallery/PinnedGallery";
-import { ScrollTriggerRefresh } from "@/components/animations/ScrollTriggerRefresh";
 
 export const metadata: Metadata = {
   title: "استودیو",
@@ -32,7 +31,7 @@ export default function StudioPage() {
 
             <div className="md:col-span-8 md:col-start-4">
               <TextReveal>
-                <h1 className="studio-heading max-w-[1000px] text-right text-[clamp(4rem,9.2vw,10rem)] font-light leading-[1.08] tracking-[-0.045em] pb-2">
+                <h1 className="type-display arshia-title studio-heading max-w-[1000px] text-right text-[clamp(4rem,9.2vw,10rem)] font-light leading-[1.08] tracking-[-0.045em] pb-2">
                   فضا
                   <br />
                   یک تجربه است.
@@ -81,7 +80,7 @@ export default function StudioPage() {
 
             <div className="md:col-span-7 md:col-start-6">
               <TextReveal>
-                <p className="studio-heading max-w-[760px] text-right text-[clamp(2.5rem,4.7vw,5.5rem)] font-light leading-[1.18] tracking-[-0.045em]">
+                <p className="bardi studio-heading max-w-[760px] text-right text-[clamp(2.5rem,4.7vw,5.5rem)] font-light leading-[1.18] tracking-[-0.045em]">
                   معماری با درک این آغاز می‌شود که یک فضا باید چه احساسی
                   ایجاد کند، نه صرفاً چگونه به نظر برسد.
                 </p>
@@ -288,8 +287,8 @@ export default function StudioPage() {
             },
           ]}
         />
-        <ScrollTriggerRefresh />
       </section>
+
       {/* DARK STATEMENT */}
       <section className="relative overflow-hidden bg-dark px-6 py-28 text-background md:px-10 md:py-48">        <div aria-hidden="true" className="absolute -left-24 top-1/2 h-72 w-72 rounded-full border border-white/10 md:h-96 md:w-96" />
         <div className="mx-auto max-w-[1600px]">
