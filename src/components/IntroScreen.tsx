@@ -36,7 +36,7 @@ export function IntroScreen() {
         .fromTo(label.current, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.48 }, "-=.25")
         .to({}, { duration: 0.72 })
         .to([mark.current, label.current], { opacity: 0, y: -8, duration: 0.28, ease: "power2.in" })
-        .to(square.current, { scale: 36, duration: 1.18, ease: "power4.in" }, "-=.08")
+        .to(square.current, {\n          scale: Math.max(window.innerWidth, window.innerHeight) / 76 * 1.6,\n          duration: 1.18,\n          ease: "power4.in",\n        }, "-=.08")
         .to(root.current, { autoAlpha: 0, duration: 0.36, ease: "power2.out" }, "-=.18");
     }, root);
 
