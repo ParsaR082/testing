@@ -18,7 +18,6 @@ export function PageTransition() {
   const image = useRef<HTMLImageElement>(null);
   const previousPath = useRef(pathname);
   const pending = useRef<TransitionState | null>(null);
-
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -30,49 +29,36 @@ export function PageTransition() {
         event.ctrlKey ||
         event.shiftKey ||
         event.altKey
-      ) {
-        return;
-      }
+      ) return;
 
       const target = event.target as HTMLElement | null;
-
-      const link =
-        target?.closest<HTMLAnchorElement>(
-          "a[data-project-transition]"
-        );
+      const link = target?.closest<HTMLAnchorElement>("a[data-page-transition]");
 
       if (!link || link.target === "_blank") return;
 
-      const cardImage =
-        link.querySelector<HTMLElement>("[data-project-image]");
+      const source = link.querySelector<HTMLElement>("[data-transition-image]");
+      const src = source?.getAttribute("data-image-src");
 
-      const src = cardImage?.getAttribute("data-image-src");
-
-      if (!cardImage || !src) return;
+      if (!source || !src) return;
 
       event.preventDefault();
 
-      const transitionState: TransitionState = {
+      pending.current = {
         src,
-        rect: cardImage.getBoundingClientRect(),
+        rect: source.getBoundingClientRect(),
         href: link.href,
       };
-
-      pending.current = transitionState;
 
       setActive(true);
 
       requestAnimationFrame(() => {
-        if (!overlay.current || !image.current || !pending.current) {
-          return;
-        }
+        if (!overlay.current || !image.current || !pending.current) return;
 
         const { rect } = pending.current;
 
         gsap.set(overlay.current, {
           display: "block",
           opacity: 1,
-          clipPath: "inset(0)",
         });
 
         gsap.set(image.current, {
@@ -84,25 +70,20 @@ export function PageTransition() {
           borderRadius: 0,
         });
 
-        // Store the destination before starting the animation.
-        const destination = transitionState.href;
-
         gsap.to(image.current, {
-          duration: 0.72,
+          duration: 0.68,
+          scale: 1.015,
           ease: "power4.inOut",
-          scale: 1.02,
           onComplete: () => {
-            router.push(new URL(destination).pathname);
+            if (!pending.current) return;
+            router.push(new URL(pending.current.href).pathname);
           },
         });
       });
     };
 
     document.addEventListener("click", onClick, true);
-
-    return () => {
-      document.removeEventListener("click", onClick, true);
-    };
+    return () => document.removeEventListener("click", onClick, true);
   }, [router]);
 
   useEffect(() => {
@@ -111,15 +92,12 @@ export function PageTransition() {
       !image.current ||
       !pending.current ||
       previousPath.current === pathname
-    ) {
-      return;
-    }
+    ) return;
 
     previousPath.current = pathname;
 
     const finish = () => {
-      const target =
-        document.querySelector<HTMLElement>("[data-transition-hero]");
+      const target = document.querySelector<HTMLElement>("[data-transition-hero]");
 
       if (!target || !image.current) {
         setActive(false);
@@ -129,32 +107,22 @@ export function PageTransition() {
 
       const targetRect = target.getBoundingClientRect();
 
-      gsap.set(target, {
-        opacity: 0,
-      });
+      gsap.set(target, { opacity: 0 });
 
-      gsap.to(image.current, {
-        left: targetRect.left,
-        top: targetRect.top,
-        width: targetRect.width,
-        height: targetRect.height,
-        scale: 1,
-        duration: 0.9,
-        ease: "power4.inOut",
-
+      const tl = gsap.timeline({
+        defaults: { ease: "power4.inOut" },
         onComplete: () => {
           gsap.to(target, {
             opacity: 1,
-            duration: 0.22,
+            duration: 0.2,
             ease: "power2.out",
           });
 
           gsap.to(overlay.current, {
             opacity: 0,
-            duration: 0.32,
-            delay: 0.04,
+            duration: 0.28,
+            delay: 0.03,
             ease: "power2.out",
-
             onComplete: () => {
               setActive(false);
               pending.current = null;
@@ -162,13 +130,19 @@ export function PageTransition() {
           });
         },
       });
+
+      tl.to(image.current, {
+        left: targetRect.left,
+        top: targetRect.top,
+        width: targetRect.width,
+        height: targetRect.height,
+        scale: 1,
+        duration: 0.88,
+      });
     };
 
-    const timer = window.setTimeout(finish, 60);
-
-    return () => {
-      window.clearTimeout(timer);
-    };
+    const timer = window.setTimeout(finish, 50);
+    return () => window.clearTimeout(timer);
   }, [pathname, active]);
 
   useEffect(() => {
@@ -176,7 +150,6 @@ export function PageTransition() {
 
     const sync = () => {
       if (!image.current || !pending.current) return;
-
       const rect = pending.current.rect;
 
       gsap.set(image.current, {
@@ -188,23 +161,12 @@ export function PageTransition() {
     };
 
     window.addEventListener("resize", sync);
-
-    return () => {
-      window.removeEventListener("resize", sync);
-    };
+    return () => window.removeEventListener("resize", sync);
   }, [active]);
 
   return (
-    <div
-      ref={overlay}
-      className="page-transition"
-      aria-hidden="true"
-    >
-      <img
-        ref={image}
-        src={pending.current?.src ?? ""}
-        alt=""
-      />
+    <div ref={overlay} className="page-transition" aria-hidden="true">
+      <img ref={image} src={pending.current?.src ?? ""} alt="" />
     </div>
   );
 }
