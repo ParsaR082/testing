@@ -206,3 +206,80 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
   .intro-mark{font-size:23px}
   .intro-label{top:calc(50% + 39px)}
 }
+
+
+/* Reference article/detail state */
+.reference-news-card{min-width:0}
+.reference-news-card>a{display:block}
+.reference-news-card .reference-news-image img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.reference-news-card:hover .reference-news-image img{transform:scale(1.035)}
+.reference-news-excerpt{max-width:270px;margin-top:7px;font-size:7px;line-height:1.8;color:#8a8985}
+.reference-article-hero{
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  gap:9%;
+  align-items:center;
+  min-height:calc(66vh - 44px);
+  padding:9% 10%;
+}
+.reference-article-copy{direction:rtl}
+.reference-article-category{margin-top:30px}
+.reference-article-title{
+  margin-top:14px;
+  font-size:clamp(2.8rem,5.2vw,5.4rem);
+  font-weight:400;
+  line-height:.94;
+  letter-spacing:-.06em;
+}
+.reference-article-description{
+  max-width:330px;
+  margin-top:18px;
+  font-size:8px;
+  line-height:2;
+  color:#777;
+}
+.reference-article-copy .editorial-link{font-size:7px}
+.reference-article-image{
+  position:relative;
+  aspect-ratio:1.35;
+  overflow:hidden;
+  background:#ddd;
+}
+.reference-article-body{
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:10%;
+  padding:11% 10%;
+  border-top:1px solid rgba(17,17,17,.06);
+}
+.reference-article-body>div{max-width:620px}
+.reference-article-body>div p{
+  margin:0 0 24px;
+  font-size:15px;
+  line-height:2.05;
+  font-weight:300;
+}
+.reference-article-wide{
+  position:relative;
+  margin:0 10% 11%;
+  aspect-ratio:1.8;
+  overflow:hidden;
+}
+@media(max-width:767px){
+  .reference-news-excerpt{font-size:8px}
+  .reference-article-hero{
+    grid-template-columns:1fr;
+    gap:30px;
+    padding:12% 8% 14%;
+    min-height:auto;
+  }
+  .reference-article-image{order:-1;aspect-ratio:1.2}
+  .reference-article-title{font-size:clamp(2.8rem,15vw,5rem)}
+  .reference-article-body{
+    grid-template-columns:1fr;
+    gap:24px;
+    padding:16% 8%;
+  }
+  .reference-article-body>div p{font-size:16px}
+  .reference-article-wide{margin:0 8% 16%;aspect-ratio:1.2}
+}
