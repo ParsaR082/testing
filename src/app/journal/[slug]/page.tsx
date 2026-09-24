@@ -37,7 +37,7 @@ export default async function ArticlePage({params}:{params:Promise<{slug:string}
         <div data-reveal className="mt-7"><EditorialLink href="/journal" transitionSource=".reference-article-image">بازگشت به مجله</EditorialLink></div>
       </div>
 
-      <div data-transition-hero data-image-reveal className="reference-article-image">
+      <div data-transition-hero data-image-reveal data-image-src={article.image} className="reference-article-image">
         <Image src={article.image} alt={article.title} fill priority sizes="(max-width:767px) 100vw,52vw" className="object-cover"/>
       </div>
     </section>
