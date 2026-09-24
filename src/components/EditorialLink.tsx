@@ -1,5 +1,18 @@
 import Link from "next/link";
 
-export function EditorialLink({href,children}:{href:string;children:React.ReactNode}){
-  return <Link href={href} className="editorial-link"><span>{children}</span><span className="editorial-arrow" aria-hidden="true">←</span></Link>;
+type EditorialLinkProps = {
+  href:string;
+  children:React.ReactNode;
+  transitionSource?:string;
+};
+
+export function EditorialLink({href,children,transitionSource}:EditorialLinkProps){
+  return <Link
+    href={href}
+    className="editorial-link"
+    data-page-transition={transitionSource ? true : undefined}
+    data-transition-source-selector={transitionSource}
+  >
+    <span>{children}</span><span className="editorial-arrow" aria-hidden="true">←</span>
+  </Link>;
 }
