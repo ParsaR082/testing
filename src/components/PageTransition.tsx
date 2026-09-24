@@ -20,6 +20,11 @@ export function PageTransition(){
   const [active,setActive]=useState(false);
 
   useEffect(()=>{
+    document.body.classList.toggle("page-transitioning",active);
+    return()=>document.body.classList.remove("page-transitioning");
+  },[active]);
+
+  useEffect(()=>{
     const onClick=(event:MouseEvent)=>{
       if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
 
