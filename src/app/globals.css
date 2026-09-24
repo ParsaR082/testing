@@ -283,3 +283,31 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
   .reference-article-body>div p{font-size:16px}
   .reference-article-wide{margin:0 8% 16%;aspect-ratio:1.2}
 }
+
+
+/* Project detail: editorial storytelling, image captions and clear inquiry path */
+.reference-detail-actions{display:flex;flex-wrap:wrap;gap:18px 24px;align-items:center}
+.reference-detail-actions .editorial-link{font-size:7px}
+.reference-detail-image{isolation:isolate}
+.reference-image-caption,.reference-gallery-label{position:absolute;z-index:2;right:14px;bottom:14px;padding:7px 10px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);font-size:7px;color:#333}
+.reference-detail-body{align-items:start}
+.reference-story-index{margin-top:18px;font-size:7px;color:#aaa}
+.reference-story-copy h2{max-width:620px;margin:0 0 22px;font-size:clamp(1.8rem,3.5vw,3.5rem);font-weight:300;line-height:1.18;letter-spacing:-.045em}
+.reference-story-copy p{max-width:640px;margin:0 0 18px;font-size:14px;line-height:2.15;font-weight:300;color:#555}
+.reference-gallery-note{display:grid;grid-template-columns:.7fr 1.3fr;gap:10%;align-items:start;padding:18px 0 4px}
+.reference-gallery-note p{max-width:560px;margin:0;font-size:clamp(1rem,1.8vw,1.5rem);font-weight:300;line-height:1.8}
+.reference-detail-gallery-small>div{position:relative}
+.reference-project-contact{margin:0 10% 10%;padding:7% 8%;background:#f3f3f0;text-align:center}
+.reference-project-contact h2{max-width:700px;margin:18px auto;font-size:clamp(2rem,4.5vw,4.5rem);font-weight:300;line-height:1.12;letter-spacing:-.05em}
+.reference-project-contact>p:not(.eyebrow){max-width:470px;margin:0 auto 24px;font-size:10px;line-height:2;color:#777}
+.reference-next-description{max-width:400px;margin-top:12px;font-size:9px;line-height:1.9;color:#777}
+@media(max-width:767px){
+  .reference-detail-actions{gap:14px;align-items:flex-start;flex-direction:column}
+  .reference-detail-actions .editorial-link{font-size:9px}
+  .reference-story-copy h2{font-size:clamp(1.8rem,9vw,3rem)}
+  .reference-story-copy p{font-size:15px}
+  .reference-gallery-note{grid-template-columns:1fr;gap:14px;padding:14px 0}
+  .reference-project-contact{margin:0 8% 14%;padding:12% 7%}
+  .reference-project-contact h2{font-size:clamp(2rem,10vw,3.3rem)}
+  .reference-project-contact>p:not(.eyebrow){font-size:12px}
+}
