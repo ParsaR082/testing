@@ -51,7 +51,6 @@ export function RevealPage() {
                 autoAlpha: 1,
                 duration: 1.45,
                 ease: "power4.inOut",
-                clearProps: "transform",
               },
               0.05
             )
