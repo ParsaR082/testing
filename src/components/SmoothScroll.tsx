@@ -4,7 +4,7 @@ import Lenis from "lenis";
 
 export function SmoothScroll() {
   useEffect(() => {
-    const lenis = new Lenis({ duration:1.2, smoothWheel:true, syncTouch:false });
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;\n    if (reducedMotion) return;\n\n    const lenis = new Lenis({ duration:1.15, smoothWheel:true, syncTouch:false, wheelMultiplier:0.9, touchMultiplier:1.05 });
     let frame = 0;
     const raf = (time:number) => { lenis.raf(time); frame=requestAnimationFrame(raf); };
     frame=requestAnimationFrame(raf);
