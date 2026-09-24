@@ -20,7 +20,7 @@ export default function JournalPage(){
         {articles.map((article)=>(
           <article key={article.slug} data-reveal className="reference-news-card">
             <Link href={"/journal/"+article.slug} data-page-transition className="block">
-              <div className="reference-news-image" data-transition-image data-image-src={article.image}>
+              <div className="reference-news-image" data-transition-image data-image-src={article.image} data-transition-grid-target={article.slug===articles[0].slug ? "true" : undefined}>
                 <Image src={article.image} alt="" fill sizes="(max-width:767px) 100vw,30vw" className="object-cover"/>
               </div>
               <p className="reference-news-category">{article.category}</p>
