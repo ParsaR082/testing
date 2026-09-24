@@ -13,6 +13,7 @@ export function IntroScreen() {
   useEffect(() => {
     if (sessionStorage.getItem("architecture-intro-seen") === "1") {
       setDone(true);
+      window.dispatchEvent(new Event("architecture:intro-complete"));
       return;
     }
 
@@ -24,18 +25,19 @@ export function IntroScreen() {
         onComplete: () => {
           sessionStorage.setItem("architecture-intro-seen", "1");
           document.documentElement.classList.remove("intro-lock");
+          window.dispatchEvent(new Event("architecture:intro-complete"));
           setDone(true);
         },
       });
 
       tl.set(root.current, { autoAlpha: 1 })
-        .fromTo(square.current, { scale: 0, rotate: -7 }, { scale: 1, rotate: 0, duration: 0.72, ease: "power4.out" })
+        .fromTo(square.current, { scale: 0.55, rotate: -7 }, { scale: 1, rotate: 0, duration: 0.82, ease: "power4.out" })
         .fromTo(mark.current, { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.62 }, "-=.32")
         .fromTo(label.current, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.48 }, "-=.25")
-        .to({}, { duration: 0.55 })
-        .to(square.current, { scale: 34, duration: 1.05, ease: "power4.in" })
-        .to([mark.current, label.current], { opacity: 0, duration: 0.22 }, "<")
-        .to(root.current, { autoAlpha: 0, duration: 0.42, ease: "power2.out" }, "-=.12");
+        .to({}, { duration: 0.72 })
+        .to([mark.current, label.current], { opacity: 0, y: -8, duration: 0.28, ease: "power2.in" })
+        .to(square.current, { scale: 36, duration: 1.18, ease: "power4.in" }, "-=.08")
+        .to(root.current, { autoAlpha: 0, duration: 0.36, ease: "power2.out" }, "-=.18");
     }, root);
 
     return () => {
