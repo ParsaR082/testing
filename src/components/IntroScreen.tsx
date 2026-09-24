@@ -11,33 +11,82 @@ export function IntroScreen() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    const announceComplete = () => {
+      window.dispatchEvent(new Event("architecture:intro-complete"));
+    };
+
+    const finishImmediately = () => {
+      sessionStorage.setItem("architecture-intro-seen", "1");
+      document.documentElement.classList.remove("intro-lock");
+      setDone(true);
+      requestAnimationFrame(announceComplete);
+    };
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      finishImmediately();
+      return;
+    }
+
     if (sessionStorage.getItem("architecture-intro-seen") === "1") {
       setDone(true);
-      window.dispatchEvent(new Event("architecture:intro-complete"));
+      requestAnimationFrame(announceComplete);
       return;
     }
 
     document.documentElement.classList.add("intro-lock");
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
+      const viewportCoverScale =
+        Math.hypot(window.innerWidth, window.innerHeight) / 76 * 1.35;
+
+      const timeline = gsap.timeline({
         defaults: { ease: "power4.inOut" },
         onComplete: () => {
           sessionStorage.setItem("architecture-intro-seen", "1");
           document.documentElement.classList.remove("intro-lock");
-          window.dispatchEvent(new Event("architecture:intro-complete"));
           setDone(true);
+          announceComplete();
         },
       });
 
-      tl.set(root.current, { autoAlpha: 1 })
-        .fromTo(square.current, { scale: 0.55, rotate: -7 }, { scale: 1, rotate: 0, duration: 0.82, ease: "power4.out" })
-        .fromTo(mark.current, { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.62 }, "-=.32")
-        .fromTo(label.current, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.48 }, "-=.25")
-        .to({}, { duration: 0.72 })
-        .to([mark.current, label.current], { opacity: 0, y: -8, duration: 0.28, ease: "power2.in" })
-        .to(square.current, {\n          scale: Math.max(window.innerWidth, window.innerHeight) / 76 * 1.6,\n          duration: 1.18,\n          ease: "power4.in",\n        }, "-=.08")
-        .to(root.current, { autoAlpha: 0, duration: 0.36, ease: "power2.out" }, "-=.18");
+      timeline
+        .set(root.current, { autoAlpha: 1 })
+        .fromTo(
+          square.current,
+          { scale: 0.52, rotate: -9, borderRadius: "2px" },
+          { scale: 1, rotate: 0, duration: 0.9, ease: "power4.out" }
+        )
+        .fromTo(
+          mark.current,
+          { y: 18, opacity: 0, rotate: -8 },
+          { y: 0, opacity: 1, rotate: 0, duration: 0.58, ease: "power3.out" },
+          "-=0.34"
+        )
+        .fromTo(
+          label.current,
+          { y: 12, opacity: 0, letterSpacing: "0.22em" },
+          { y: 0, opacity: 1, letterSpacing: "0.08em", duration: 0.5 },
+          "-=0.2"
+        )
+        .to({}, { duration: 0.7 })
+        .to(
+          [mark.current, label.current],
+          { opacity: 0, y: -10, duration: 0.28, ease: "power2.in" }
+        )
+        .to(
+          square.current,
+          {
+            scale: viewportCoverScale,
+            duration: 1.28,
+            ease: "power4.in",
+          },
+          "-=0.06"
+        )
+        .to(
+          root.current,
+          { autoAlpha: 0, duration: 0.38, ease: "power2.out" },
+          "-=0.2"
+        );
     }, root);
 
     return () => {
