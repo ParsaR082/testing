@@ -66,25 +66,42 @@ export function RevealPage() {
                 clearProps: "transform",
               }, 0.9);
 
-            // The hero leaves with the same scroll progress and re-enters when scrolling back up.
-            const heroExit = gsap.timeline({
-              scrollTrigger: {
-                trigger: hero,
-                start: "top top",
-                end: "bottom top",
-                scrub: 0.65,
-                invalidateOnRefresh: true,
-              },
+            // Attach the scroll-linked exit only after the entrance has completed.
+            // This prevents the scrub timeline from competing with the intro's initial hidden state.
+            intro.eventCallback("onComplete", () => {
+              gsap.timeline({
+                scrollTrigger: {
+                  trigger: hero,
+                  start: "top top",
+                  end: "bottom top",
+                  scrub: 0.65,
+                  invalidateOnRefresh: true,
+                },
+              })
+                .fromTo(copy,
+                  { x: 0, y: 0, autoAlpha: 1 },
+                  { x: -90, y: -12, autoAlpha: 0, ease: "none" },
+                  0
+                )
+                .fromTo(art,
+                  {
+                    x: 0, y: 0, scale: 1, autoAlpha: 1,
+                    clipPath: "inset(0% 0 0 0 round 58% 0 0 0)",
+                  },
+                  {
+                    x: 95, y: 70, scale: 1.12, autoAlpha: 0,
+                    clipPath: "inset(0 0 100% 0 round 58% 0 0 0)",
+                    ease: "none",
+                  },
+                  0
+                )
+                .fromTo(socials,
+                  { x: 0, autoAlpha: 1 },
+                  { x: -24, autoAlpha: 0, stagger: 0.025, ease: "none" },
+                  0
+                );
+              ScrollTrigger.refresh();
             });
-
-            heroExit
-              .to(copy, { x: -90, y: -12, autoAlpha: 0, ease: "none" }, 0)
-              .to(art, {
-                x: 95, y: 70, scale: 1.12, autoAlpha: 0,
-                clipPath: "inset(0 0 100% 0 round 58% 0 0 0)",
-                ease: "none",
-              }, 0)
-              .to(socials, { x: -24, autoAlpha: 0, stagger: 0.025, ease: "none" }, 0);
           }
         }
 
