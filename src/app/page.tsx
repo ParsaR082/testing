@@ -26,10 +26,10 @@ export default function Home() {
           <p className="reference-description">
             بازخوانی معماری معاصر؛ جایی که برنامه، ماده و نور به تجربه‌ای دقیق از فضا تبدیل می‌شوند.
           </p>
-          <EditorialLink href={"/projects/" + featured.slug}>کاوش پروژه</EditorialLink>
+          <EditorialLink href={"/projects/" + featured.slug} transitionSource=".reference-hero-art">کاوش پروژه</EditorialLink>
         </div>
 
-        <div className="reference-hero-art" data-image-reveal aria-hidden="true">
+        <div className="reference-hero-art" data-image-reveal data-image-src={heroImage} data-transition-source aria-hidden="true">
           <Image
             src={heroImage}
             alt=""
