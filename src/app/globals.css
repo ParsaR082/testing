@@ -311,3 +311,31 @@ html.intro-lock,html.intro-lock body{overflow:hidden}
   .reference-project-contact h2{font-size:clamp(2rem,10vw,3.3rem)}
   .reference-project-contact>p:not(.eyebrow){font-size:12px}
 }
+
+
+/* Homepage opening sequence refinements */
+.intro-screen{isolation:isolate;overflow:hidden;contain:paint}
+.intro-square{width:76px;height:76px;margin:-38px;will-change:transform}
+.intro-mark{font-size:29px;pointer-events:none}
+.intro-label{font-size:9px;letter-spacing:.08em}
+.reference-hero{min-height:calc(66vh - 44px);isolation:isolate}
+.reference-hero-copy{z-index:3}
+.reference-hero-art{will-change:clip-path,transform,opacity;backface-visibility:hidden}
+.reference-hero-art img{will-change:transform;backface-visibility:hidden}
+.reference-title{max-width:100%;text-wrap:balance}
+.reference-hero-copy .editorial-link{margin-top:2px}
+.reference-socials span{display:grid;place-items:center;width:18px;height:18px;border:1px solid rgba(17,17,17,.14);border-radius:50%;font-size:7px;transition:background .3s ease,color .3s ease,transform .3s ease}
+.reference-socials span:hover{background:#111;color:#fff;transform:translateY(-2px)}
+.reference-intro{position:relative}
+.reference-intro:before{content:"";position:absolute;top:0;right:10%;width:70px;height:1px;background:#111;transform-origin:right}
+@media(max-width:767px){
+  .intro-square{width:66px;height:66px;margin:-33px}
+  .intro-mark{font-size:25px}
+  .intro-label{font-size:8px}
+  .reference-hero{overflow:hidden;min-height:calc(78svh - 58px)}
+  .reference-hero-art{will-change:clip-path,transform,opacity}
+  .reference-socials span{width:20px;height:20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .intro-screen{display:none!important}
+}
