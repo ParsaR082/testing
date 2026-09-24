@@ -19,7 +19,7 @@ const filters = [
 export function ProjectsGrid({ projects }: { projects: Project[] }) {
   const [filter, setFilter] = useState("all");
   const grid = useRef<HTMLDivElement>(null);
-  const previousState = useRef<Flip.FlipState | null>(null);
+  const previousState = useRef<ReturnType<typeof Flip.getState> | null>(null);
   const firstRender = useRef(true);
 
   const items =
