@@ -27,17 +27,41 @@ export function RevealPage() {
           const socials = hero.querySelectorAll<HTMLElement>(".reference-socials span");
           const header = shell?.querySelector<HTMLElement>(".site-header");
 
-          gsap.set([header, art, copy, socials], { autoAlpha: 0 });
+          if (!art || !copy) return;
 
-          const intro = gsap.timeline({ defaults: { ease: "power4.out" } });
+          const introTargets = [
+            header,
+            art,
+            copy,
+            ...Array.from(socials),
+          ].filter(Boolean);
+
+          gsap.set(introTargets, { autoAlpha: 0 });
+
+          const intro = gsap.timeline({
+            defaults: { ease: "power4.out" },
+          });
+
+          if (header) {
+            intro.fromTo(
+              header,
+              {
+                y: -12,
+                autoAlpha: 0,
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.65,
+                clearProps: "transform",
+              },
+              0
+            );
+          }
 
           intro
-            .fromTo(header,
-              { y: -12, autoAlpha: 0 },
-              { y: 0, autoAlpha: 1, duration: 0.65, clearProps: "transform" },
-              0
-            )
-            .fromTo(art,
+            .fromTo(
+              art,
               {
                 clipPath: "inset(100% 0 0 0 round 58% 0 0 0)",
                 scale: 1.12,
@@ -54,13 +78,26 @@ export function RevealPage() {
               },
               0.05
             )
-            .fromTo(copy,
-              { y: 26, autoAlpha: 0 },
-              { y: 0, autoAlpha: 1, duration: 0.78, clearProps: "transform" },
+            .fromTo(
+              copy,
+              {
+                y: 26,
+                autoAlpha: 0,
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.78,
+                clearProps: "transform",
+              },
               0.43
             )
-            .fromTo(copy?.querySelectorAll(":scope > *") ?? [],
-              { y: 15, autoAlpha: 0 },
+            .fromTo(
+              copy.querySelectorAll(":scope > *"),
+              {
+                y: 15,
+                autoAlpha: 0,
+              },
               {
                 y: 0,
                 autoAlpha: 1,
@@ -71,65 +108,120 @@ export function RevealPage() {
               },
               0.55
             )
-            .fromTo(socials,
-              { y: 12, autoAlpha: 0 },
-              { y: 0, autoAlpha: 1, duration: 0.42, stagger: 0.07, clearProps: "transform" },
+            .fromTo(
+              socials,
+              {
+                y: 12,
+                autoAlpha: 0,
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.42,
+                stagger: 0.07,
+                clearProps: "transform",
+              },
               0.92
             );
         }
 
-        gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
-          if (element.closest(".reference-hero")) return;
+        gsap.utils
+          .toArray<HTMLElement>("[data-reveal]")
+          .forEach((element) => {
+            if (element.closest(".reference-hero")) return;
 
-          gsap.fromTo(element, { y: 34, autoAlpha: 0 }, {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.9,
-            ease: "power4.out",
-            clearProps: "transform",
-            scrollTrigger: { trigger: element, start: "top 88%", once: true },
+            gsap.fromTo(
+              element,
+              {
+                y: 34,
+                autoAlpha: 0,
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.9,
+                ease: "power4.out",
+                clearProps: "transform",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top 88%",
+                  once: true,
+                },
+              }
+            );
           });
-        });
 
-        gsap.utils.toArray<HTMLElement>("[data-image-reveal]").forEach((element) => {
-          if (element.closest(".reference-hero")) return;
+        gsap.utils
+          .toArray<HTMLElement>("[data-image-reveal]")
+          .forEach((element) => {
+            if (element.closest(".reference-hero")) return;
 
-          gsap.fromTo(element, { clipPath: "inset(100% 0 0 0)", scale: 1.045 }, {
-            clipPath: "inset(0% 0 0 0)",
-            scale: 1,
-            duration: 1.12,
-            ease: "power4.inOut",
-            clearProps: "clipPath,transform",
-            scrollTrigger: { trigger: element, start: "top 90%", once: true },
+            gsap.fromTo(
+              element,
+              {
+                clipPath: "inset(100% 0 0 0)",
+                scale: 1.045,
+              },
+              {
+                clipPath: "inset(0% 0 0 0)",
+                scale: 1,
+                duration: 1.12,
+                ease: "power4.inOut",
+                clearProps: "clipPath,transform",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top 90%",
+                  once: true,
+                },
+              }
+            );
           });
-        });
 
-        gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((element) => {
-          gsap.to(element, {
-            yPercent: -7,
-            ease: "none",
-            scrollTrigger: { trigger: element, start: "top bottom", end: "bottom top", scrub: true },
+        gsap.utils
+          .toArray<HTMLElement>("[data-parallax]")
+          .forEach((element) => {
+            gsap.to(element, {
+              yPercent: -7,
+              ease: "none",
+              scrollTrigger: {
+                trigger: element,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            });
           });
-        });
 
         ScrollTrigger.refresh();
-      }, root);
+      }, root.current ?? undefined);
     };
 
     const onIntroComplete = () => startPageMotion();
-    window.addEventListener("architecture:intro-complete", onIntroComplete);
 
-    // Handles the case where the intro was already completed this session,
-    // or its completion event fires before this component subscribes.
+    window.addEventListener(
+      "architecture:intro-complete",
+      onIntroComplete
+    );
+
     if (sessionStorage.getItem("architecture-intro-seen") === "1") {
       requestAnimationFrame(startPageMotion);
     }
 
     return () => {
-      window.removeEventListener("architecture:intro-complete", onIntroComplete);
+      window.removeEventListener(
+        "architecture:intro-complete",
+        onIntroComplete
+      );
+
       context?.revert();
     };
   }, []);
 
-  return <div ref={root} className="pointer-events-none fixed inset-0 z-0" aria-hidden="true" />;
+  return (
+    <div
+      ref={root}
+      className="pointer-events-none fixed inset-0 z-0"
+      aria-hidden="true"
+    />
+  );
 }
