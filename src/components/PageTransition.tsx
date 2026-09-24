@@ -31,6 +31,8 @@ export function PageTransition(){
       const target=event.target as HTMLElement|null;
       const link=target?.closest<HTMLAnchorElement>("a[data-page-transition]");
       if(!link||link.target==="_blank")return;
+      const destination=new URL(link.href);
+      if(destination.pathname===pathname)return;
 
       const selector=link.getAttribute("data-transition-source-selector");
       const source=selector
@@ -42,12 +44,13 @@ export function PageTransition(){
 
       event.preventDefault();
 
-      pending.current={src,rect:source.getBoundingClientRect(),href:link.href};
+      pending.current={src,rect:source.getBoundingClientRect(),href:destination.href};
       setActive(true);
 
       requestAnimationFrame(()=>{
         if(!overlay.current||!image.current||!pending.current)return;
-        const {rect}=pending.current;
+        const {rect,src}=pending.current;
+        image.current.src=src;
 
         gsap.set(overlay.current,{display:"block",opacity:1});
         gsap.set(image.current,{
@@ -68,7 +71,7 @@ export function PageTransition(){
 
     document.addEventListener("click",onClick,true);
     return()=>document.removeEventListener("click",onClick,true);
-  },[router]);
+  },[router,pathname]);
 
   useEffect(()=>{
     if(!active||!image.current||!pending.current||previousPath.current===pathname)return;
