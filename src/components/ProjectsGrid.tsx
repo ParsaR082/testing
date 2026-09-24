@@ -44,7 +44,7 @@ export function ProjectsGrid({ projects }: { projects: Project[] }) {
       {items.map((project) => (
         <article key={project.slug} data-project-card className="reference-card">
           <Link href={"/projects/" + project.slug} data-page-transition className="block">
-            <div className="reference-card-image" data-transition-image data-image-src={project.image}>
+            <div className="reference-card-image" data-transition-image data-image-src={project.image} data-transition-grid-target={projects[0]?.slug===project.slug ? "true" : undefined}>
               <Image src={project.image} alt={project.title} fill sizes="(max-width:767px) 100vw,33vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
             </div>
             <div className="reference-card-meta">
