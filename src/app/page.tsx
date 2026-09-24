@@ -65,7 +65,7 @@ export default function Home() {
       </section>
 
       <section className="px-6 pb-24 md:px-12 md:pb-32">
-        <div className="mb-12 flex items-end justify-between border-b border-black/10 pb-5">
+        <div className="mb-12 flex items-end justify-between border-b border-black/10 pb-5" data-reveal>
           <div>
             <p className="eyebrow">پروژه‌ها</p>
             <h2 className="mt-3 text-3xl font-light tracking-[-.04em] md:text-5xl">منتخب</h2>
