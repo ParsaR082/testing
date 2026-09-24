@@ -32,7 +32,7 @@ export default async function ProjectPage({params}:{params:Promise<{slug:string}
         <p data-reveal className="eyebrow mt-10">{project.category} · {project.year}</p>
         <h1 data-reveal className="reference-detail-title">{project.title}</h1>
         <p data-reveal className="reference-detail-description">{project.description} این پروژه با تمرکز بر رابطه میان نور، ماده و حرکت شکل گرفته و تلاش می‌کند تجربه‌ای آرام و پیوسته از فضا بسازد.</p>
-        <div data-reveal className="mt-7"><EditorialLink href="/projects">بازگشت به پروژه‌ها</EditorialLink></div>
+        <div data-reveal className="mt-7"><EditorialLink href="/projects" transitionSource=".reference-detail-image">بازگشت به پروژه‌ها</EditorialLink></div>
       </div>
       <div data-transition-hero data-image-reveal className="reference-detail-image">
         <Image src={project.image} alt={project.title} fill priority sizes="(max-width:767px) 100vw,52vw" className="object-cover"/>
