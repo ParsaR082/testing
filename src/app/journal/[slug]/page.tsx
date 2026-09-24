@@ -34,7 +34,7 @@ export default async function ArticlePage({params}:{params:Promise<{slug:string}
         <p data-reveal className="eyebrow reference-article-category">{article.category}</p>
         <h1 data-reveal className="reference-article-title">{article.title}</h1>
         <p data-reveal className="reference-article-description">{article.excerpt}</p>
-        <div data-reveal className="mt-7"><EditorialLink href="/journal">بازگشت به مجله</EditorialLink></div>
+        <div data-reveal className="mt-7"><EditorialLink href="/journal" transitionSource=".reference-article-image">بازگشت به مجله</EditorialLink></div>
       </div>
 
       <div data-transition-hero data-image-reveal className="reference-article-image">
