@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { IntroScreen } from "@/components/IntroScreen";
 import { PageTransition } from "@/components/PageTransition";
 
 export const metadata: Metadata = {
@@ -11,6 +12,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="fa" dir="rtl">
       <body>
+        <IntroScreen />
         {children}
         <PageTransition />
       </body>
