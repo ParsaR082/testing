@@ -5,7 +5,7 @@ import type { Project } from "@/data/projects";
 export function ProjectCard({project}:{project:Project}){
   return <article className="group">
     <Link href={"/projects/"+project.slug} data-page-transition className="block">
-      <div className="image-frame aspect-[4/5]" data-transition-image data-image-src={project.image}>
+      <div className="image-frame aspect-[4/5]" data-image-reveal data-transition-image data-image-src={project.image}>
         <Image src={project.image} alt={project.title} fill sizes="(max-width:767px) 100vw,(max-width:1199px) 50vw,33vw" className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.035]"/>
       </div>
       <div className="mt-5 grid grid-cols-[1fr_auto] gap-5">
