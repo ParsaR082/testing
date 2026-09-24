@@ -11,41 +11,46 @@ export function RevealPage() {
 
   useEffect(() => {
     const context = gsap.context(() => {
-      const heroTimeline = gsap.timeline({ defaults: { ease: "power4.out" } });
+      const referenceHero = document.querySelector(".reference-hero");
 
-      heroTimeline
-        .fromTo("[data-hero-image]", { clipPath: "inset(100% 0 0 0)", scale: 1.08, y: 22 }, { clipPath: "inset(0% 0 0 0)", scale: 1, y: 0, duration: 1.45 }, 0.1)
-        .fromTo("[data-hero-title]", { yPercent: 115, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.15 }, 0.58)
-        .fromTo("[data-hero-meta]", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.85 }, 0.86)
-        .fromTo("[data-hero-copy]", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9 }, 0.94)
-        .fromTo("[data-hero-link]", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75 }, 1.03);
+      if (referenceHero) {
+        const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-      gsap.to("[data-hero-stage]", {
-        yPercent: -18,
-        opacity: 0.55,
-        ease: "none",
-        scrollTrigger: { trigger: "[data-hero-stage]", start: "top top", end: "bottom top", scrub: true },
-      });
-
-      gsap.utils.toArray<HTMLElement>("[data-hero-parallax]").forEach((element) => {
-        gsap.to(element, {
-          yPercent: -11,
-          ease: "none",
-          scrollTrigger: { trigger: element, start: "top bottom", end: "bottom top", scrub: true },
-        });
-      });
+        tl.fromTo(
+          ".reference-hero-art",
+          { clipPath: "inset(100% 0 0 0 round 58% 0 0 0)", scale: 1.08, opacity: 0 },
+          { clipPath: "inset(0% 0 0 0 round 58% 0 0 0)", scale: 1, opacity: 1, duration: 1.2 },
+          0.08
+        )
+        .fromTo(
+          ".reference-hero-copy > *",
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.72, stagger: 0.075 },
+          0.42
+        )
+        .fromTo(
+          ".reference-socials span",
+          { y: 10, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.45, stagger: 0.05 },
+          0.7
+        );
+      }
 
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
-        gsap.fromTo(element, { y: 72, opacity: 0 }, {
-          y: 0, opacity: 1, duration: 1.15, ease: "power4.out",
-          scrollTrigger: { trigger: element, start: "top 86%", once: true },
+        if (element.closest(".reference-hero")) return;
+
+        gsap.fromTo(element, { y: 42, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 1.0, ease: "power4.out",
+          scrollTrigger: { trigger: element, start: "top 88%", once: true },
         });
       });
 
       gsap.utils.toArray<HTMLElement>("[data-image-reveal]").forEach((element) => {
+        if (element.closest(".reference-hero")) return;
+
         gsap.fromTo(element, { clipPath: "inset(100% 0 0 0)", scale: 1.04 }, {
-          clipPath: "inset(0% 0 0 0)", scale: 1, duration: 1.25, ease: "power4.out",
-          scrollTrigger: { trigger: element, start: "top 88%", once: true },
+          clipPath: "inset(0% 0 0 0)", scale: 1, duration: 1.1, ease: "power4.out",
+          scrollTrigger: { trigger: element, start: "top 90%", once: true },
         });
       });
 
