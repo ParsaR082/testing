@@ -43,8 +43,8 @@ export function ProjectsGrid({ projects }: { projects: Project[] }) {
     <div ref={grid} className="reference-grid">
       {items.map((project) => (
         <article key={project.slug} data-project-card className="reference-card">
-          <Link href={"/projects/" + project.slug} data-project-transition className="block">
-            <div className="reference-card-image" data-project-image data-image-src={project.image}>
+          <Link href={"/projects/" + project.slug} data-page-transition className="block">
+            <div className="reference-card-image" data-transition-image data-image-src={project.image}>
               <Image src={project.image} alt={project.title} fill sizes="(max-width:767px) 100vw,33vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
             </div>
             <div className="reference-card-meta">
